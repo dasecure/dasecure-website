@@ -81,34 +81,62 @@ export default function Home() {
       <section id="products" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Products</h2>
-          <p className="text-gray-400 mb-12">Our solutions, launching soon.</p>
+          <p className="text-gray-400 mb-12">Tools we've built for modern businesses.</p>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Link 
+              href="https://passqr.com" 
+              target="_blank"
+              className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden hover:border-emerald-500/50 transition group"
+            >
               <div className="absolute top-4 right-4 bg-emerald-500/20 text-emerald-400 text-sm px-3 py-1 rounded-full">
+                Live
+              </div>
+              <div className="text-4xl mb-4">🎫</div>
+              <h3 className="text-2xl font-bold mb-2">PassQR</h3>
+              <p className="text-gray-400 mb-4">
+                Digital passes for modern businesses. QR tickets, memberships, and loyalty cards with Apple Wallet support.
+              </p>
+              <span className="text-emerald-400 group-hover:text-emerald-300 font-semibold transition">
+                Visit passqr.com →
+              </span>
+            </Link>
+            
+            <Link 
+              href="https://iotpush.com" 
+              target="_blank"
+              className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden hover:border-orange-500/50 transition group"
+            >
+              <div className="absolute top-4 right-4 bg-orange-500/20 text-orange-400 text-sm px-3 py-1 rounded-full">
+                Live
+              </div>
+              <div className="text-4xl mb-4">🔔</div>
+              <h3 className="text-2xl font-bold mb-2">iotpush</h3>
+              <p className="text-gray-400 mb-4">
+                Push notifications for IoT devices. One curl command from your Raspberry Pi, Arduino, or server.
+              </p>
+              <span className="text-orange-400 group-hover:text-orange-300 font-semibold transition">
+                Visit iotpush.com →
+              </span>
+            </Link>
+
+            <Link 
+              href="https://waitlistwin.com" 
+              target="_blank"
+              className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden hover:border-purple-500/50 transition group"
+            >
+              <div className="absolute top-4 right-4 bg-purple-500/20 text-purple-400 text-sm px-3 py-1 rounded-full">
                 Coming Soon
               </div>
-              <h3 className="text-2xl font-bold mb-3">Product #1</h3>
+              <div className="text-4xl mb-4">📋</div>
+              <h3 className="text-2xl font-bold mb-2">WaitlistWin</h3>
               <p className="text-gray-400 mb-4">
-                Something great is in the works. Join the waitlist to be the first to know.
+                Beautiful launch waitlists in 60 seconds. Grow your audience before you ship.
               </p>
-              <button className="text-emerald-400 hover:text-emerald-300 font-semibold transition">
-                Join Waitlist →
-              </button>
-            </div>
-            
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden">
-              <div className="absolute top-4 right-4 bg-gray-700 text-gray-300 text-sm px-3 py-1 rounded-full">
-                In Development
-              </div>
-              <h3 className="text-2xl font-bold mb-3">Product #2</h3>
-              <p className="text-gray-400 mb-4">
-                More solutions on the way. We're always building.
-              </p>
-              <button className="text-gray-500 font-semibold cursor-not-allowed">
-                Coming Later
-              </button>
-            </div>
+              <span className="text-purple-400 group-hover:text-purple-300 font-semibold transition">
+                Visit waitlistwin.com →
+              </span>
+            </Link>
           </div>
         </div>
       </section>
