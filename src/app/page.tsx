@@ -126,12 +126,12 @@ export default function Home() {
               className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden hover:border-purple-500/50 transition group"
             >
               <div className="absolute top-4 right-4 bg-purple-500/20 text-purple-400 text-sm px-3 py-1 rounded-full">
-                Coming Soon
+                Live
               </div>
               <div className="text-4xl mb-4">📋</div>
               <h3 className="text-2xl font-bold mb-2">WaitlistWin</h3>
               <p className="text-gray-400 mb-4">
-                Beautiful launch waitlists in 60 seconds. Grow your audience before you ship.
+                Beautiful launch waitlists in 60 seconds. Collect emails, track analytics, and build hype.
               </p>
               <span className="text-purple-400 group-hover:text-purple-300 font-semibold transition">
                 Visit waitlistwin.com →
