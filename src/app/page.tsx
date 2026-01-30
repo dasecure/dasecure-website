@@ -95,7 +95,7 @@ export default function Home() {
               <div className="text-4xl mb-4">🎫</div>
               <h3 className="text-2xl font-bold mb-2">PassQR</h3>
               <p className="text-gray-400 mb-4">
-                Digital passes for modern businesses. QR tickets, memberships, and loyalty cards with Apple Wallet support.
+                Digital passes for modern businesses. QR tickets, memberships, and loyalty cards with Apple Wallet support. Scanner app, bulk import, scan analytics, and webhook integrations.
               </p>
               <span className="text-emerald-400 group-hover:text-emerald-300 font-semibold transition">
                 Visit passqr.com →
@@ -113,7 +113,7 @@ export default function Home() {
               <div className="text-4xl mb-4">🔔</div>
               <h3 className="text-2xl font-bold mb-2">iotpush</h3>
               <p className="text-gray-400 mb-4">
-                Push notifications for IoT devices. One curl command from your Raspberry Pi, Arduino, or server.
+                Push notifications for IoT and automation. One HTTP call from any device, server, or app. Mobile app with real-time alerts, webhook and email subscribers.
               </p>
               <span className="text-orange-400 group-hover:text-orange-300 font-semibold transition">
                 Visit iotpush.com →
@@ -131,12 +131,26 @@ export default function Home() {
               <div className="text-4xl mb-4">📋</div>
               <h3 className="text-2xl font-bold mb-2">WaitlistWin</h3>
               <p className="text-gray-400 mb-4">
-                Beautiful launch waitlists in 60 seconds. Collect emails, track analytics, and build hype.
+                Beautiful launch waitlists in 60 seconds. Collect emails, referral tracking, analytics dashboard, and IoTPush notifications on signup.
               </p>
               <span className="text-purple-400 group-hover:text-purple-300 font-semibold transition">
                 Visit waitlistwin.com →
               </span>
             </Link>
+
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden">
+              <div className="absolute top-4 right-4 bg-pink-500/20 text-pink-400 text-sm px-3 py-1 rounded-full">
+                Coming Soon
+              </div>
+              <div className="text-4xl mb-4">💌</div>
+              <h3 className="text-2xl font-bold mb-2">Greetability</h3>
+              <p className="text-gray-400 mb-4">
+                Never miss a birthday, anniversary, or holiday again. Automated greeting cards and reminders for the people who matter.
+              </p>
+              <span className="text-pink-400 font-semibold">
+                greetability.com — launching soon
+              </span>
+            </div>
           </div>
         </div>
       </section>
