@@ -193,7 +193,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">About Us</h2>
           <p className="text-gray-400 mb-12 max-w-2xl">
-            DaSecure Solutions LLC is a software company based in Sunnyvale,
+            DaSecure Solutions LLC is a software company based in San Francisco,
             California. We design and ship focused products across SaaS, IoT,
             and mobile — tools that do one thing well.
           </p>
@@ -273,7 +273,7 @@ export default function Home() {
 
           <div className="max-w-md">
             <a
-              href="mailto:vincent@dasecure.com"
+              href="mailto:info@dasecure.com"
               className="inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-8 py-4 rounded-lg transition text-lg"
             >
               <svg
@@ -289,7 +289,7 @@ export default function Home() {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              vincent@dasecure.com
+              info@dasecure.com
             </a>
             <p className="text-gray-500 mt-4 text-sm">
               Or reach out on{" "}
@@ -315,7 +315,7 @@ export default function Home() {
                 <span className="text-emerald-400">da</span>secure
               </Link>
               <p className="text-gray-500 text-sm mt-1">
-                DaSecure Solutions LLC · Sunnyvale, CA
+                DaSecure Solutions LLC · San Francisco, CA
               </p>
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
