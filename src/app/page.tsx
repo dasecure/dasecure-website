@@ -1,6 +1,70 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+
+const products = [
+  {
+    name: "PassQR",
+    emoji: "🎫",
+    tagline: "Digital Passes & QR Tickets",
+    description:
+      "Create, distribute, and validate QR passes for events, memberships, and loyalty programs. Apple & Google Wallet, scanner app, bulk import, server-side analytics, and annual billing.",
+    url: "https://passqr.com",
+    color: "emerald",
+    colorClasses: {
+      badge: "bg-emerald-500/20 text-emerald-400",
+      border: "hover:border-emerald-500/50",
+      link: "text-emerald-400 group-hover:text-emerald-300",
+    },
+  },
+  {
+    name: "iotpush",
+    emoji: "🔔",
+    tagline: "Multi-Channel IoT Push Notifications",
+    description:
+      "One API call. Push, email, and webhook delivery for any device that can curl. Real-time alerts with background batching, plan-gated features, and mobile app.",
+    url: "https://iotpush.com",
+    color: "orange",
+    colorClasses: {
+      badge: "bg-orange-500/20 text-orange-400",
+      border: "hover:border-orange-500/50",
+      link: "text-orange-400 group-hover:text-orange-300",
+    },
+  },
+  {
+    name: "WaitlistWin",
+    emoji: "🚀",
+    tagline: "Viral Launch Waitlists",
+    description:
+      "Turn signups into word-of-mouth growth with gamified referrals. Waitlist pages in 60 seconds with analytics, embeddable widget, referral tracking, and API access.",
+    url: "https://waitlistwin.com",
+    color: "purple",
+    colorClasses: {
+      badge: "bg-purple-500/20 text-purple-400",
+      border: "hover:border-purple-500/50",
+      link: "text-purple-400 group-hover:text-purple-300",
+    },
+  },
+  {
+    name: "SenseStamp",
+    emoji: "📡",
+    tagline: "IoT Security Sensors",
+    description:
+      "Smart motion sensors for home and office security, powered by iotpush. Real-time alerts, tamper detection, and easy setup.",
+    url: "https://sensestamp.com",
+    color: "cyan",
+    colorClasses: {
+      badge: "bg-cyan-500/20 text-cyan-400",
+      border: "hover:border-cyan-500/50",
+      link: "text-cyan-400 group-hover:text-cyan-300",
+    },
+  },
+];
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       {/* Navigation */}
@@ -9,12 +73,88 @@ export default function Home() {
           <Link href="/" className="text-2xl font-bold">
             <span className="text-emerald-400">da</span>secure
           </Link>
-          <div className="flex gap-8 items-center">
-            <Link href="#about" className="text-gray-300 hover:text-white transition">About</Link>
-            <Link href="#products" className="text-gray-300 hover:text-white transition">Products</Link>
-            <Link href="#contact" className="text-gray-300 hover:text-white transition">Contact</Link>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex gap-8 items-center">
+            <Link
+              href="#about"
+              className="text-gray-300 hover:text-white transition"
+            >
+              About
+            </Link>
+            <Link
+              href="#products"
+              className="text-gray-300 hover:text-white transition"
+            >
+              Products
+            </Link>
+            <Link
+              href="#contact"
+              className="text-gray-300 hover:text-white transition"
+            >
+              Contact
+            </Link>
           </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden text-gray-300 hover:text-white transition"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {mobileMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-800 bg-gray-950/95 backdrop-blur-md">
+            <div className="px-6 py-4 flex flex-col gap-4">
+              <Link
+                href="#about"
+                className="text-gray-300 hover:text-white transition"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                href="#products"
+                className="text-gray-300 hover:text-white transition"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Products
+              </Link>
+              <Link
+                href="#contact"
+                className="text-gray-300 hover:text-white transition"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -22,22 +162,23 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Building software that{" "}
-              <span className="text-emerald-400">solves real problems</span>
+              Building the future of{" "}
+              <span className="text-emerald-400">digital infrastructure</span>
             </h1>
             <p className="text-xl text-gray-400 mb-8">
-              dasecure solutions creates micro-SaaS products and mobile apps 
-              that fill gaps in the market. Simple tools, real value.
+              We build focused SaaS products and IoT tools that solve real
+              problems — from digital passes to push notifications to smart
+              security.
             </p>
-            <div className="flex gap-4">
-              <Link 
-                href="#products" 
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="#products"
                 className="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-8 py-3 rounded-lg transition"
               >
                 View Products
               </Link>
-              <Link 
-                href="#contact" 
+              <Link
+                href="#contact"
                 className="border border-gray-700 hover:border-gray-500 px-8 py-3 rounded-lg transition"
               >
                 Get in Touch
@@ -50,27 +191,35 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12">About Us</h2>
+          <h2 className="text-3xl font-bold mb-4">About Us</h2>
+          <p className="text-gray-400 mb-12 max-w-2xl">
+            DaSecure Solutions LLC is a software company based in Sunnyvale,
+            California. We design and ship focused products across SaaS, IoT,
+            and mobile — tools that do one thing well.
+          </p>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
               <div className="text-emerald-400 text-4xl mb-4">🎯</div>
               <h3 className="text-xl font-semibold mb-2">Problem First</h3>
               <p className="text-gray-400">
-                We identify real gaps in the market before writing a single line of code.
+                We identify real gaps in the market before writing a single line
+                of code.
               </p>
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
               <div className="text-emerald-400 text-4xl mb-4">⚡</div>
               <h3 className="text-xl font-semibold mb-2">Ship Fast</h3>
               <p className="text-gray-400">
-                Lean products that solve one thing well. No bloat, no feature creep.
+                Lean products that solve one thing well. No bloat, no feature
+                creep.
               </p>
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
-              <div className="text-emerald-400 text-4xl mb-4">📱</div>
-              <h3 className="text-xl font-semibold mb-2">Mobile Native</h3>
+              <div className="text-emerald-400 text-4xl mb-4">🔗</div>
+              <h3 className="text-xl font-semibold mb-2">Connected Ecosystem</h3>
               <p className="text-gray-400">
-                Built for the modern user. Mobile-first, always accessible.
+                Our products work together — SenseStamp alerts via iotpush,
+                PassQR launches on WaitlistWin.
               </p>
             </div>
           </div>
@@ -80,77 +229,36 @@ export default function Home() {
       {/* Products Section */}
       <section id="products" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">Products</h2>
-          <p className="text-gray-400 mb-12">Tools we've built for modern businesses.</p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link 
-              href="https://passqr.com" 
-              target="_blank"
-              className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden hover:border-emerald-500/50 transition group"
-            >
-              <div className="absolute top-4 right-4 bg-emerald-500/20 text-emerald-400 text-sm px-3 py-1 rounded-full">
-                Live
-              </div>
-              <div className="text-4xl mb-4">🎫</div>
-              <h3 className="text-2xl font-bold mb-2">PassQR</h3>
-              <p className="text-gray-400 mb-4">
-                Digital passes for modern businesses. QR tickets, memberships, and loyalty cards with Apple Wallet support. Scanner app, bulk import, scan analytics, and webhook integrations.
-              </p>
-              <span className="text-emerald-400 group-hover:text-emerald-300 font-semibold transition">
-                Visit passqr.com →
-              </span>
-            </Link>
-            
-            <Link 
-              href="https://iotpush.com" 
-              target="_blank"
-              className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden hover:border-orange-500/50 transition group"
-            >
-              <div className="absolute top-4 right-4 bg-orange-500/20 text-orange-400 text-sm px-3 py-1 rounded-full">
-                Live
-              </div>
-              <div className="text-4xl mb-4">🔔</div>
-              <h3 className="text-2xl font-bold mb-2">iotpush</h3>
-              <p className="text-gray-400 mb-4">
-                Push notifications for IoT and automation. One HTTP call from any device, server, or app. Mobile app with real-time alerts, webhook and email subscribers.
-              </p>
-              <span className="text-orange-400 group-hover:text-orange-300 font-semibold transition">
-                Visit iotpush.com →
-              </span>
-            </Link>
+          <h2 className="text-3xl font-bold mb-4">Our Products</h2>
+          <p className="text-gray-400 mb-12">
+            Focused tools for modern businesses and developers.
+          </p>
 
-            <Link 
-              href="https://waitlistwin.com" 
-              target="_blank"
-              className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden hover:border-purple-500/50 transition group"
-            >
-              <div className="absolute top-4 right-4 bg-purple-500/20 text-purple-400 text-sm px-3 py-1 rounded-full">
-                Live
-              </div>
-              <div className="text-4xl mb-4">📋</div>
-              <h3 className="text-2xl font-bold mb-2">WaitlistWin</h3>
-              <p className="text-gray-400 mb-4">
-                Beautiful launch waitlists in 60 seconds. Collect emails, referral tracking, analytics dashboard, and IoTPush notifications on signup.
-              </p>
-              <span className="text-purple-400 group-hover:text-purple-300 font-semibold transition">
-                Visit waitlistwin.com →
-              </span>
-            </Link>
-
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden">
-              <div className="absolute top-4 right-4 bg-pink-500/20 text-pink-400 text-sm px-3 py-1 rounded-full">
-                Coming Soon
-              </div>
-              <div className="text-4xl mb-4">💌</div>
-              <h3 className="text-2xl font-bold mb-2">Greetability</h3>
-              <p className="text-gray-400 mb-4">
-                Never miss a birthday, anniversary, or holiday again. Automated greeting cards and reminders for the people who matter.
-              </p>
-              <span className="text-pink-400 font-semibold">
-                greetability.com — launching soon
-              </span>
-            </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {products.map((product) => (
+              <Link
+                key={product.name}
+                href={product.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden ${product.colorClasses.border} transition group`}
+              >
+                <div
+                  className={`absolute top-4 right-4 ${product.colorClasses.badge} text-sm px-3 py-1 rounded-full`}
+                >
+                  Live
+                </div>
+                <div className="text-4xl mb-4">{product.emoji}</div>
+                <h3 className="text-2xl font-bold mb-1">{product.name}</h3>
+                <p className="text-sm text-gray-500 mb-3">{product.tagline}</p>
+                <p className="text-gray-400 mb-4">{product.description}</p>
+                <span
+                  className={`${product.colorClasses.link} font-semibold transition`}
+                >
+                  Visit {product.url.replace("https://", "")} →
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -159,41 +267,84 @@ export default function Home() {
       <section id="contact" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-gray-400 mb-8">Have an idea? Want to collaborate? Let's talk.</p>
-          
+          <p className="text-gray-400 mb-8">
+            Have an idea? Want to collaborate? We&apos;d love to hear from you.
+          </p>
+
           <div className="max-w-md">
-            <form className="space-y-4">
-              <input 
-                type="email" 
-                placeholder="your@email.com"
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition"
-              />
-              <textarea 
-                placeholder="Your message..."
-                rows={4}
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 transition"
-              />
-              <button 
-                type="submit"
-                className="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-8 py-3 rounded-lg transition w-full"
+            <a
+              href="mailto:vincent@dasecure.com"
+              className="inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-8 py-4 rounded-lg transition text-lg"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                Send Message
-              </button>
-            </form>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              vincent@dasecure.com
+            </a>
+            <p className="text-gray-500 mt-4 text-sm">
+              Or reach out on{" "}
+              <Link
+                href="https://github.com/dasecure"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition underline"
+              >
+                GitHub
+              </Link>
+            </p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500">
-            © 2026 dasecure solutions LLC. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <Link href="https://github.com/dasecure" className="text-gray-500 hover:text-white transition">
-              GitHub
-            </Link>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+              <Link href="/" className="text-xl font-bold">
+                <span className="text-emerald-400">da</span>secure
+              </Link>
+              <p className="text-gray-500 text-sm mt-1">
+                DaSecure Solutions LLC · Sunnyvale, CA
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              {products.map((product) => (
+                <Link
+                  key={product.name}
+                  href={product.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 hover:text-white transition"
+                >
+                  {product.name}
+                </Link>
+              ))}
+              <Link
+                href="https://github.com/dasecure"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-white transition"
+              >
+                GitHub
+              </Link>
+            </div>
+          </div>
+          <div className="mt-6 pt-6 border-t border-gray-800/50">
+            <p className="text-gray-600 text-sm">
+              © {new Date().getFullYear()} DaSecure Solutions LLC. All rights
+              reserved.
+            </p>
           </div>
         </div>
       </footer>
