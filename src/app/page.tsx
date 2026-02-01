@@ -9,7 +9,7 @@ const products = [
     emoji: "🎫",
     tagline: "Digital Passes & QR Tickets",
     description:
-      "Create, distribute, and validate QR passes for events, memberships, and loyalty programs. Apple & Google Wallet, scanner app, bulk import, server-side analytics, and annual billing.",
+      "Create, distribute, and validate QR passes for events, memberships, and loyalty programs. Apple Wallet, built-in camera scanner, API keys, n8n integration, bulk import, and real-time analytics.",
     url: "https://passqr.com",
     color: "emerald",
     colorClasses: {
@@ -49,9 +49,9 @@ const products = [
   {
     name: "SenseStamp",
     emoji: "📡",
-    tagline: "IoT Security Sensors",
+    tagline: "Tamper-Proof IoT Event Logging",
     description:
-      "Smart motion sensors for home and office security, powered by iotpush. Real-time alerts, tamper detection, and easy setup.",
+      "Cryptographically signed sensor events with hardware-backed proof of presence. HMAC-SHA256 attestation, NFC tap verification, and immutable audit trails.",
     url: "https://sensestamp.com",
     color: "cyan",
     colorClasses: {
