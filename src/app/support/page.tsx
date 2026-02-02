@@ -35,6 +35,13 @@ const products = [
     url: "https://sensestamp.com",
     docs: null,
   },
+  {
+    name: "just25",
+    emoji: "🧠",
+    description: "Speed & reflex brain game — tap 1 to 25",
+    url: "https://apps.apple.com/app/just25",
+    docs: null,
+  },
 ];
 
 export default function SupportPage() {

@@ -60,6 +60,20 @@ const products = [
       link: "text-cyan-400 group-hover:text-cyan-300",
     },
   },
+  {
+    name: "just25",
+    emoji: "🧠",
+    tagline: "Speed & Reflex Brain Game",
+    description:
+      "Tap numbers 1–25 as fast as you can. Track your brain age, build daily streaks, and compete against yourself. Free on the App Store.",
+    url: "https://apps.apple.com/app/just25",
+    color: "pink",
+    colorClasses: {
+      badge: "bg-pink-500/20 text-pink-400",
+      border: "hover:border-pink-500/50",
+      link: "text-pink-400 group-hover:text-pink-300",
+    },
+  },
 ];
 
 export default function Home() {
