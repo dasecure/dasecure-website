@@ -33,6 +33,20 @@ const products = [
     },
   },
   {
+    name: "HaSecure",
+    emoji: "🛡️",
+    tagline: "AI-Powered Managed Security",
+    description:
+      "Enterprise-grade security monitoring without the enterprise price. Wazuh-powered threat detection, AI-driven alert triage, auto-blocking, honeypots, and vulnerability scanning. One-command agent install.",
+    url: "https://hasecure.com",
+    color: "red",
+    colorClasses: {
+      badge: "bg-red-500/20 text-red-400",
+      border: "hover:border-red-500/50",
+      link: "text-red-400 group-hover:text-red-300",
+    },
+  },
+  {
     name: "WaitlistWin",
     emoji: "🚀",
     tagline: "Viral Launch Waitlists",
