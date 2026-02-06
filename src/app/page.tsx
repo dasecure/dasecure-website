@@ -80,7 +80,7 @@ const products = [
     tagline: "Speed & Reflex Brain Game",
     description:
       "Tap numbers 1–25 as fast as you can. Track your brain age, build daily streaks, and compete against yourself. Free on the App Store.",
-    url: "https://apps.apple.com/app/just25",
+    url: "https://apps.apple.com/us/app/just25/id6758323002",
     color: "pink",
     colorClasses: {
       badge: "bg-pink-500/20 text-pink-400",
