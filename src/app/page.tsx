@@ -61,6 +61,20 @@ const products = [
     },
   },
   {
+    name: "ZapQR",
+    emoji: "⚡",
+    tagline: "Secure Password Autofill via QR",
+    description:
+      "Type passwords on untrusted computers without touching the keyboard. Scan a QR code with your phone, password auto-fills securely. End-to-end encrypted, keylogger-proof.",
+    url: "https://zapqr.ai",
+    color: "yellow",
+    colorClasses: {
+      badge: "bg-yellow-500/20 text-yellow-400",
+      border: "hover:border-yellow-500/50",
+      link: "text-yellow-400 group-hover:text-yellow-300",
+    },
+  },
+  {
     name: "just25",
     emoji: "🧠",
     tagline: "Speed & Reflex Brain Game",
