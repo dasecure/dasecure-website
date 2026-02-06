@@ -284,7 +284,9 @@ export default function Home() {
                   <span
                     className={`${product.colorClasses.link} font-semibold transition`}
                   >
-                    Visit {product.url.replace("https://", "").replace("apps.apple.com/app/", "App Store")} →
+                    {product.name === "just25" 
+                      ? "Available on App Store →" 
+                      : `Visit ${product.url.replace("https://", "")} →`}
                   </span>
                   {product.name === "just25" && (
                     <span className="bg-black text-white text-xs px-3 py-2 rounded-lg flex items-center gap-2 border border-gray-600 hover:bg-gray-900 transition">
