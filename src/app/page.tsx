@@ -68,6 +68,7 @@ const products = [
       "Type passwords on untrusted computers without touching the keyboard. Scan a QR code with your phone, password auto-fills securely. End-to-end encrypted, keylogger-proof.",
     url: "https://zapqr.ai",
     color: "yellow",
+    badge: "Patent Pending",
     colorClasses: {
       badge: "bg-yellow-500/20 text-yellow-400",
       border: "hover:border-yellow-500/50",
@@ -274,7 +275,7 @@ export default function Home() {
                 <div
                   className={`absolute top-4 right-4 ${product.colorClasses.badge} text-sm px-3 py-1 rounded-full`}
                 >
-                  Live
+                  {product.badge || "Live"}
                 </div>
                 <div className="text-4xl mb-4">{product.emoji}</div>
                 <h3 className="text-2xl font-bold mb-1">{product.name}</h3>
