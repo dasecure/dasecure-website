@@ -76,6 +76,20 @@ const products = [
     },
   },
   {
+    name: "ZapDrop",
+    emoji: "📲",
+    tagline: "Cross-Device File Transfer",
+    description:
+      "Send files between any devices instantly. Scan a QR code, transfer files peer-to-peer with end-to-end encryption. No app install required on desktop — works in browser.",
+    url: "https://zapdrop.app",
+    color: "indigo",
+    colorClasses: {
+      badge: "bg-indigo-500/20 text-indigo-400",
+      border: "hover:border-indigo-500/50",
+      link: "text-indigo-400 group-hover:text-indigo-300",
+    },
+  },
+  {
     name: "just25",
     emoji: "🧠",
     tagline: "Speed & Reflex Brain Game",
