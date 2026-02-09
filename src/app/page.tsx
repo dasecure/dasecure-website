@@ -63,6 +63,7 @@ const products = [
   {
     name: "ZapQR",
     emoji: "⚡",
+    icon: "/zapqr-icon.png",
     tagline: "Secure Password Autofill via QR",
     description:
       "Type passwords on untrusted computers without touching the keyboard. Scan a QR code with your phone, password auto-fills securely. End-to-end encrypted, keylogger-proof.",
@@ -78,6 +79,7 @@ const products = [
   {
     name: "ZapDrop",
     emoji: "📲",
+    icon: "/zapdrop-icon.png",
     tagline: "Cross-Device File Transfer",
     description:
       "Send files between any devices instantly. Scan a QR code, transfer files peer-to-peer with end-to-end encryption. No app install required on desktop — works in browser.",
@@ -291,7 +293,11 @@ export default function Home() {
                 >
                   {product.badge || "Live"}
                 </div>
-                <div className="text-4xl mb-4">{product.emoji}</div>
+                {product.icon ? (
+                  <img src={product.icon} alt={product.name} className="w-12 h-12 mb-4 rounded-lg object-contain" />
+                ) : (
+                  <div className="text-4xl mb-4">{product.emoji}</div>
+                )}
                 <h3 className="text-2xl font-bold mb-1">{product.name}</h3>
                 <p className="text-sm text-gray-500 mb-3">{product.tagline}</p>
                 <p className="text-gray-400 mb-4">{product.description}</p>
