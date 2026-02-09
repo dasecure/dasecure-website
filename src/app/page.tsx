@@ -81,7 +81,7 @@ const products = [
     tagline: "Cross-Device File Transfer",
     description:
       "Send files between any devices instantly. Scan a QR code, transfer files peer-to-peer with end-to-end encryption. No app install required on desktop — works in browser.",
-    url: "https://zapdrop.app",
+    url: "https://zapdrop.ai",
     color: "indigo",
     colorClasses: {
       badge: "bg-indigo-500/20 text-indigo-400",
