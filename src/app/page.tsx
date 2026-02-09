@@ -7,6 +7,7 @@ const products = [
   {
     name: "PassQR",
     emoji: "🎫",
+    icon: "/passqr-icon.png",
     tagline: "Digital Passes & QR Tickets",
     description:
       "Create, distribute, and validate QR passes for events, memberships, and loyalty programs. Apple Wallet, built-in camera scanner, API keys, n8n integration, bulk import, and real-time analytics.",
@@ -21,6 +22,7 @@ const products = [
   {
     name: "iotpush",
     emoji: "🔔",
+    icon: "/iotpush-icon.png",
     tagline: "Multi-Channel IoT Push Notifications",
     description:
       "One API call. Push, email, and webhook delivery for any device that can curl. Real-time alerts with background batching, plan-gated features, and mobile app.",
@@ -94,6 +96,7 @@ const products = [
   {
     name: "just25",
     emoji: "🧠",
+    icon: "/just25-icon.png",
     tagline: "Speed & Reflex Brain Game",
     description:
       "Tap numbers 1–25 as fast as you can. Track your brain age, build daily streaks, and compete against yourself. Free on the App Store.",
