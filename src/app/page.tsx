@@ -70,7 +70,7 @@ const products = [
     description:
       "Type passwords on untrusted computers without touching the keyboard. Scan a QR code with your phone, password auto-fills securely. End-to-end encrypted, keylogger-proof.",
     url: "https://zapqr.ai",
-    appStoreUrl: "https://apps.apple.com/app/zap-passqr/id6740611073",
+    appStoreUrl: "https://apps.apple.com/us/app/zapqr-password-manager/id6758756021",
     color: "yellow",
     badge: "Patent Pending",
     colorClasses: {
