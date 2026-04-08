@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaInterval Pro - Activate</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4488FF;
+            margin-bottom: 4px;
+        }
+        .logo .pro {
+            background: #FFAA00;
+            color: #fff;
+            font-size: 14px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+        .subtitle {
+            color: #7A8A9A;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .status-box {
+            background: #1a1a2e;
+            border: 1px solid #2a2a4a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .status-box h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        .status-box p {
+            color: #7A8A9A;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .key-display {
+            background: #0d1117;
+            border: 2px solid #FFAA00;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: monospace;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: #FFAA00;
+            margin: 16px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+        }
+        .btn-primary {
+            background: #FFAA00;
+            color: #000;
+        }
+        .btn-primary:hover { background: #FFbb33; }
+        .btn-primary:disabled {
+            background: #555;
+            color: #999;
+            cursor: not-allowed;
+        }
+        .status-msg {
+            margin-top: 16px;
+            font-size: 14px;
+            min-height: 20px;
+        }
+        .status-msg.success { color: #00CC44; }
+        .status-msg.error { color: #FF4444; }
+        .status-msg.pending { color: #FFAA00; }
+        .steps {
+            text-align: left;
+            margin: 16px 0;
+        }
+        .steps li {
+            color: #7A8A9A;
+            font-size: 14px;
+            margin-bottom: 8px;
+            list-style: none;
+            padding-left: 24px;
+            position: relative;
+        }
+        .steps li::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            color: #FFAA00;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            color: #3A4A5A;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">DaInterval <span class="pro">PRO</span></div>
+        <div class="subtitle">Interval Training for Athletes</div>
+
+        <div class="status-box">
+            <h2>Activate Pro Features</h2>
+            <ol class="steps">
+                <li data-step="1.">Open DaInterval Pro on your watch</li>
+                <li data-step="2.">Make sure your phone is connected via Bluetooth</li>
+                <li data-step="3.">Tap the button below to activate</li>
+            </ol>
+
+            <div id="key-section" style="display:none;">
+                <div class="key-display" id="key-value"></div>
+            </div>
+
+            <button class="btn btn-primary" id="activate-btn" onclick="activatePro()">
+                Send Pro Key to Watch
+            </button>
+
+            <div class="status-msg" id="status"></div>
+        </div>
+
+        <div class="footer">by dasecure</div>
+    </div>
+
+    <script>
+        // Get the pro key from URL parameter
+        function getKeyFromUrl() {
+            var params = new URLSearchParams(window.location.search);
+            return params.get('key');
+        }
+
+        // Initialize
+        var proKey = getKeyFromUrl();
+        if (proKey) {
+            document.getElementById('key-section').style.display = 'block';
+            document.getElementById('key-value').textContent = proKey;
+        } else {
+            document.getElementById('status').textContent = 'Error: No activation key found in URL.';
+            document.getElementById('status').className = 'status-msg error';
+            document.getElementById('activate-btn').disabled = true;
+        }
+
+        function activatePro() {
+            var status = document.getElementById('status');
+            var btn = document.getElementById('activate-btn');
+
+            if (!proKey) {
+                status.textContent = 'No key provided.';
+                status.className = 'status-msg error';
+                return;
+            }
+
+            status.textContent = 'Sending key to your watch...';
+            status.className = 'status-msg pending';
+            btn.disabled = true;
+
+            try {
+                // Garmin Connect IQ companion app messaging
+                // The Connect IQ Mobile SDK bridges this to the watch
+                var message = { "proKey": proKey };
+
+                if (typeof ConnectIQ !== 'undefined' && ConnectIQ.sendMessage) {
+                    ConnectIQ.sendMessage(message, function(result) {
+                        if (result === true || result === 0) {
+                            status.textContent = 'Pro activated! Check your watch.';
+                            status.className = 'status-msg success';
+                        } else {
+                            status.textContent = 'Failed to send. Is your watch connected?';
+                            status.className = 'status-msg error';
+                            btn.disabled = false;
+                        }
+                    });
+                } else {
+                    // Fallback: try the Garmin URL scheme
+                    // This opens Garmin Connect app which forwards the message
+                    var appId = 'DD197511-F064-42E2-9310-924AFD328021';
+                    var encoded = encodeURIComponent(JSON.stringify(message));
+                    var garminUrl = 'connectiq://comm/' + appId + '?message=' + encoded;
+
+                    status.textContent = 'Opening Garmin Connect...';
+                    status.className = 'status-msg pending';
+
+                    // Try opening the Garmin Connect deep link
+                    window.location.href = garminUrl;
+
+                    // After a delay, show manual instructions
+                    setTimeout(function() {
+                        status.innerHTML = 'If the key was not sent automatically,<br>enter it manually in the watch app settings:<br><strong>' + proKey + '</strong>';
+                        status.className = 'status-msg pending';
+                        btn.disabled = false;
+                        btn.textContent = 'Try Again';
+                    }, 3000);
+                }
+            } catch (e) {
+                status.textContent = 'Error: ' + e.message;
+                status.className = 'status-msg error';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
