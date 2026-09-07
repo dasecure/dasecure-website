@@ -656,7 +656,7 @@ export default function Home() {
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
               <div className="text-emerald-400 text-4xl mb-4">⚡</div>
-              <h3 className="text-xl font-semibold mb-2">Shipped, not slidewared</h3>
+              <h3 className="text-xl font-semibold mb-2">Shipped, not slideware</h3>
               <p className="text-gray-400">
                 Live on the App Store, Google Play, the Chrome Web Store and
                 wordpress.org — not a roadmap.
