@@ -22,6 +22,7 @@ type Flagship = {
   appStoreUrl?: string;
   playStoreUrl?: string;
   badge?: string;
+  proof?: { text: string; href: string; cta: string };
   accent: {
     ring: string;
     chip: string;
@@ -67,6 +68,11 @@ const flagships: Flagship[] = [
     playStoreUrl:
       "https://play.google.com/store/apps/details?id=ai.zapqr.app",
     badge: "Patent pending",
+    proof: {
+      text: "Proved on an $80 UNIHIKER — a 240×320 screen with no keyboard, signing in over RFC 8628 with nothing but stdlib Python.",
+      href: "https://zapqr.ai/devices",
+      cta: "See it running",
+    },
     accent: {
       ring: "hover:border-lime-400/60",
       chip: "bg-lime-400/10 text-lime-300 border-lime-400/20",
@@ -422,6 +428,20 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
+
+                    {p.proof && (
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 rounded-xl border border-gray-700/70 bg-gray-950/40 px-5 py-4">
+                        <p className="text-sm text-gray-400 flex-1">{p.proof.text}</p>
+                        <Link
+                          href={p.proof.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`text-sm font-semibold whitespace-nowrap ${p.accent.link} transition`}
+                        >
+                          {p.proof.cta} →
+                        </Link>
+                      </div>
+                    )}
 
                     <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-5 border-t border-gray-700/60">
                       <Link
