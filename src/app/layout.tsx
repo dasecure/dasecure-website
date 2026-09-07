@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     "DaSecure",
   ],
   authors: [{ name: "DaSecure Solutions LLC" }],
+  icons: {
+    icon: "/icon-512.png",
+    apple: "/apple-touch-icon.png",
+  },
   alternates: {
     canonical: "https://dasecure.com",
   },
@@ -39,11 +43,20 @@ export const metadata: Metadata = {
     url: "https://dasecure.com",
     siteName: "DaSecure Solutions",
     locale: "en_US",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "DaSecure Solutions — proof of who, what and where",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "DaSecure Solutions | Proof of who, what and where",
     description,
+    images: ["/og.png"],
   },
   robots: {
     index: true,

@@ -35,7 +35,7 @@ type Flagship = {
 const flagships: Flagship[] = [
   {
     name: "ZapQR",
-    icon: "/zapqr-icon.png",
+    icon: "/zapqr-icon.svg",
     emoji: "⚡",
     layer: "Identity",
     question: "Who are you?",
@@ -168,21 +168,25 @@ const wiring = [
 const alsoBuilt = [
   {
     name: "ZapDrop",
+    mark: "/mark-zapdrop.png",
     tagline: "Cross-device file transfer, end-to-end encrypted",
     url: "https://zapdrop.ai",
   },
   {
     name: "SenseStamp",
+    mark: "/mark-sensestamp.png",
     tagline: "Tamper-proof IoT event logging",
     url: "https://sensestamp.com",
   },
   {
     name: "WaitlistWin",
+    mark: "/mark-waitlistwin.png",
     tagline: "Viral launch waitlists",
     url: "https://waitlistwin.com",
   },
   {
     name: "just25",
+    mark: "/mark-just25.png",
     tagline: "Speed & reflex brain game",
     url: "https://apps.apple.com/us/app/just25/id6758323002",
   },
@@ -546,10 +550,22 @@ export default function Home() {
                     Patent pending
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold mb-1">PassQR Tag</h3>
-                <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">
-                  Presence
-                </p>
+                <div className="flex items-center gap-3 mb-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/passqr-tag-icon.png"
+                    alt="PassQR Tag"
+                    className="w-12 h-12 rounded-xl object-contain"
+                  />
+                  <div>
+                    <h3 className="text-2xl font-bold leading-tight">
+                      PassQR Tag
+                    </h3>
+                    <p className="text-xs uppercase tracking-widest text-gray-500">
+                      Presence
+                    </p>
+                  </div>
+                </div>
                 <p className="font-semibold text-teal-300">
                   Reach the owner. Prove you were there.
                 </p>
@@ -623,12 +639,21 @@ export default function Home() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-gray-900/40 border border-gray-800 rounded-lg px-5 py-4 hover:border-gray-600 hover:bg-gray-900 transition"
+                className="group flex items-start gap-3 bg-gray-900/40 border border-gray-800 rounded-lg px-5 py-4 hover:border-gray-600 hover:bg-gray-900 transition"
               >
-                <p className="font-semibold text-gray-200 group-hover:text-white transition">
-                  {p.name}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">{p.tagline}</p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={p.mark}
+                  alt=""
+                  aria-hidden
+                  className="w-6 h-6 rounded-md shrink-0 opacity-80 group-hover:opacity-100 transition"
+                />
+                <div>
+                  <p className="font-semibold text-gray-200 group-hover:text-white transition">
+                    {p.name}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">{p.tagline}</p>
+                </div>
               </Link>
             ))}
           </div>
