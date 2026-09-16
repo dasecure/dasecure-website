@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 const description =
-  "DaSecure Solutions builds proof of who, what and where — ZapQR passwordless sign-in, PassQR Apple & Google Wallet credentials, and iotPush two-way alerts. Three products that compose into one stack.";
+  "DaSecure Solutions builds proof of who, what and where — ZapQR passwordless sign-in, PassQR Apple & Google Wallet credentials, and iotPush two-way alerts, plus ZapLock, ZapDrop and PassQR Tag built on the same identity layer.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dasecure.com"),
@@ -23,7 +23,10 @@ export const metadata: Metadata = {
     "digital loyalty cards",
     "push notifications API",
     "proof of presence",
+    "folder encryption",
     "ZapQR",
+    "ZapLock",
+    "ZapDrop",
     "PassQR",
     "iotPush",
     "DaSecure",
@@ -109,6 +112,29 @@ const organizationSchema = {
         url: "https://iotpush.com",
         description:
           "Push notification API for servers, scripts and IoT devices, with two-way actions and replies.",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "SoftwareApplication",
+        name: "ZapLock",
+        applicationCategory: "SecurityApplication",
+        operatingSystem: "macOS, iOS, Windows, Android",
+        url: "https://zaplock.zapqr.ai",
+        description:
+          "Encrypt a folder in place and unlock it by signing in with ZapQR. Share and revoke access by address.",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "SoftwareApplication",
+        name: "ZapDrop",
+        applicationCategory: "BusinessApplication",
+        url: "https://screens.zapdrop.ai",
+        description:
+          "A screen shows a rotating QR instead of a flyer rack; a scan and a Face ID approval deliver the one-pager to a verified address.",
       },
     },
   ],
