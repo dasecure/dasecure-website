@@ -751,6 +751,7 @@ export default function Home() {
                     "Approval link over NFC",
                     "Physical button to sign",
                     "Signature verified independently",
+                    "Works with a Trezor Model T",
                   ].map((c) => (
                     <span
                       key={c}
@@ -765,12 +766,13 @@ export default function Home() {
                     First application: stablecoin transfers
                   </p>
                   <p className="text-gray-400 text-sm leading-relaxed mb-5">
-                    The stick shows you what you are actually signing on its own
-                    screen, so a compromised browser cannot change the
-                    transaction underneath you. The mechanism is general —
-                    anything where one stolen credential should not be enough.
-                    It runs on an ESP32-C6 today and is a long way from a
-                    product.
+                    The signer shows you what you are actually signing on its
+                    own screen, so a compromised browser — or an agent acting
+                    in your session — cannot change the transaction underneath
+                    you. It runs on the ESP32-C6 prototype below and on an
+                    off-the-shelf Trezor Model T, which is the point: the
+                    quorum does not depend on our hardware. The mechanism is
+                    general, and it is a long way from a product.
                   </p>
                   <Link
                     href="https://demo.identitystick.com"
@@ -783,6 +785,20 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <figure className="relative mt-10 pt-8 border-t border-cyan-500/20">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/identitystick-prototype.jpg"
+                alt="The IdentityStick prototype on a breadboard: an ESP32-C6 with a colour screen reading READY beside a PN532 NFC module."
+                className="w-full rounded-xl border border-gray-700/60"
+              />
+              <figcaption className="text-sm text-gray-500 mt-4">
+                The prototype as it actually is — an ESP32-C6 and a PN532 NFC
+                module on a breadboard. The screen is the security boundary:
+                whatever it shows is what the key will sign.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
