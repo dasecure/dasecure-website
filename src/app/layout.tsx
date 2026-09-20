@@ -120,8 +120,8 @@ const organizationSchema = {
         "@type": "SoftwareApplication",
         name: "ZapLock",
         applicationCategory: "SecurityApplication",
-        operatingSystem: "macOS, iOS, Windows, Android",
-        url: "https://zaplock.zapqr.ai",
+        operatingSystem: "macOS, iOS, iPadOS, Android",
+        url: "https://zapqr.ai/zaplock",
         description:
           "Encrypt a folder in place and unlock it by signing in with ZapQR. Share and revoke access by address.",
       },

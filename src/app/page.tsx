@@ -185,6 +185,7 @@ type FamilyMember = {
   role: string;
   url: string;
   urlLabel: string;
+  appStoreUrl?: string;
   playStoreUrl?: string;
   status?: string;
   accentText: string;
@@ -201,9 +202,10 @@ const family: FamilyMember[] = [
     role: "Identity decides who can open your files.",
     url: "https://zaplock.zapqr.ai",
     urlLabel: "zaplock.zapqr.ai",
+    appStoreUrl: "https://apps.apple.com/app/id6808469062",
     playStoreUrl:
       "https://play.google.com/store/apps/details?id=ai.zapqr.zaplock",
-    status: "Live on Google Play · iOS and macOS in review",
+    status: "Live · Mac, iPhone, iPad and Android",
     accentText: "text-indigo-300",
     accentRule: "bg-indigo-400",
   },
@@ -672,6 +674,17 @@ export default function Home() {
                     >
                       {f.urlLabel} →
                     </Link>
+                    {f.appStoreUrl && (
+                      <Link
+                        href={f.appStoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-black text-white text-xs px-3 py-2 rounded-lg flex items-center gap-2 border border-gray-600 hover:bg-gray-900 transition"
+                      >
+                        <AppleIcon />
+                        App Store
+                      </Link>
+                    )}
                     {f.playStoreUrl && (
                       <Link
                         href={f.playStoreUrl}
