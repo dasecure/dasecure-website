@@ -23,11 +23,11 @@ export const faqs: Faq[] = [
   },
   {
     q: "What is PassQR?",
-    a: "PassQR issues loyalty, membership and access credentials as Apple Wallet and Google Wallet passes. A stamp card updates on the customer’s lock screen the moment a barista scans it, there is a browser-based scanner for the counter (scan.passqr.com) and a companion iOS scanner app, and a multi-tenant API behind it all. It is built for owner-operated businesses: cafés, gyms, salons, retail and market stalls.",
+    a: "PassQR issues loyalty, membership and access credentials as Apple Wallet and Google Wallet passes. A stamp card updates on the customer’s lock screen the moment a barista scans it, there is a browser-based scanner for the counter (scan.passqr.com) and a companion iOS scanner app, and a multi-tenant API behind it all. It is built for owner-operated businesses: cafés, gyms, salons, retail and market stalls. Plans are Free ($0, first 50 customers), Starter ($29 a month), Growth ($79 a month, up to 3 shops) and Chain ($199 a month, up to 10 shops), with two months free on yearly billing; Apple Wallet, Google Wallet, the API, webhooks and MCP are on every plan. Full details at loyalty.passqr.com.",
   },
   {
     q: "What is iotPush?",
-    a: "iotPush turns one HTTP POST into a push notification on your phone. Servers, scripts, agents and IoT devices send to a topic; the iotPush app on iOS and Android can answer back with action buttons and typed replies, so an alert becomes a decision instead of a dead end. It also ships an MCP server and Apple Shortcuts support. The free tier includes 3 topics and 100 messages a month.",
+    a: "iotPush turns one HTTP POST into a push notification on your phone. Servers, scripts, agents and IoT devices send to a topic; the iotPush app on iOS and Android can answer back with action buttons and typed replies, so an alert becomes a decision instead of a dead end. It also ships an MCP server and Apple Shortcuts support. The free plan includes 1 topic, 100 pushes and 20 approvals a month, no card required; Team is $29 a month (10 topics, 5,000 pushes, unlimited approvals) and Pro is $49 a month (5 seats, unlimited topics, 25,000 pushes). Full details at iotpush.com/pricing.",
   },
   {
     q: "How do ZapQR, PassQR and iotPush work together?",
