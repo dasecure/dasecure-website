@@ -951,9 +951,9 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-3">Frequently asked questions</h2>
           <p className="text-gray-400 mb-10 max-w-2xl">
             Short, factual answers. Everything here is also in{" "}
-            <Link href="/llms.txt" className="underline hover:text-white">
+            <a href="/llms.txt" className="underline hover:text-white">
               /llms.txt
-            </Link>{" "}
+            </a>{" "}
             for assistants that read plain text.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
