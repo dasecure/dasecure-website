@@ -42,7 +42,7 @@ export default function VoiceCloner() {
           {/* App Store Button */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <a
-              href="https://apps.apple.com/app/voice-cloner-ai-tts/id6740000000"
+              href="https://apps.apple.com/us/app/voice-cloner-ai-tts/id6758972208"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white text-black rounded-xl font-semibold hover:bg-gray-100 transition shadow-lg"
@@ -140,7 +140,7 @@ export default function VoiceCloner() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Voice Design</h3>
               <p className="text-gray-400">
-                Create unique voices from text descriptions. "A warm, friendly female voice with a British accent."
+                Create unique voices from text descriptions. &ldquo;A warm, friendly female voice with a British accent.&rdquo;
               </p>
             </div>
             
@@ -226,7 +226,7 @@ export default function VoiceCloner() {
             Download Voice Cloner and start creating in seconds.
           </p>
           <a
-            href="https://apps.apple.com/app/voice-cloner-ai-tts/id6740000000"
+            href="https://apps.apple.com/us/app/voice-cloner-ai-tts/id6758972208"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-xl font-semibold hover:bg-gray-100 transition shadow-lg text-lg"

@@ -1,45 +1,101 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { breadcrumbs, jsonLd } from "../structured-data";
 
 export const metadata: Metadata = {
-  title: "Support | DaSecure Solutions",
-  description: "Get help with DaSecure products — PassQR, iotpush, WaitlistWin, and SenseStamp.",
+  title: "Support",
+  description:
+    "Get help with DaSecure products — ZapQR, PassQR, iotPush, ZapLock, ZapDrop, Voice Cloner, FastFlow and just25. Email info@dasecure.com; we usually answer within 24 hours.",
+  alternates: { canonical: "https://dasecure.com/support" },
 };
+
+const faq = [
+  {
+    q: "How do I get help with a DaSecure product?",
+    a: "Email info@dasecure.com with the product name and, if it is an app, the version from its Settings screen. We usually answer within 24 hours. ZapQR has its own support address, support@zapqr.ai.",
+  },
+  {
+    q: "How do I reset my password?",
+    a: "ZapQR accounts have no password: sign in at auth.zapqr.ai with your passkey, by scanning the QR with the ZapQR app, or with an email link. PassQR and iotPush consoles offer Sign in with ZapQR and an email magic link, so there is nothing to reset.",
+  },
+  {
+    q: "How do I cancel a subscription?",
+    a: "App subscriptions (ZapQR Premium, FastFlow Premium) are managed by Apple or Google: open your App Store or Google Play subscriptions page and cancel there. Web plans (PassQR, iotPush, ZapDrop) are cancelled from the product's Billing page, any time.",
+  },
+  {
+    q: "Do you offer refunds?",
+    a: "For web plans, contact us within 14 days of purchase for a full refund. App Store and Google Play purchases are refunded by Apple and Google under their own policies; we will point you to the right form.",
+  },
+  {
+    q: "Is my data secure?",
+    a: "Data is encrypted in transit (TLS) and at rest, and we never sell it. ZapLock and the ZapQR vault are end-to-end encrypted: we cannot read your files or passwords. Details per product are in the privacy policy.",
+  },
+  {
+    q: "Which platforms are supported?",
+    a: "Web consoles work in any modern browser. ZapQR, iotPush and ZapLock have iOS and Android apps; ZapLock also runs on the Mac; PassQR Scanner, Voice Cloner, FastFlow, Resume Hero and just25 are on iOS.",
+  },
+  {
+    q: "How do I delete my account?",
+    a: "ZapQR: auth.zapqr.ai → Account → Delete account. PassQR and iotPush: Settings → Delete account in the console, or email info@dasecure.com from the account's address and we will delete it within 7 days.",
+  },
+];
 
 const products = [
   {
+    name: "ZapQR",
+    emoji: "⚡",
+    description: "Passwordless sign-in (OIDC), passkeys, password manager app, Chrome extension",
+    url: "https://zapqr.ai",
+    docs: "https://auth.zapqr.ai",
+    support: "support@zapqr.ai",
+  },
+  {
     name: "PassQR",
     emoji: "🎫",
-    description: "Digital passes, QR tickets, and Apple Wallet integration",
+    description: "Apple & Google Wallet loyalty, membership and access passes",
     url: "https://passqr.com",
     docs: "https://passqr.com/docs",
   },
   {
-    name: "iotpush",
-    emoji: "📡",
-    description: "Push notifications for IoT devices and servers",
+    name: "iotPush",
+    emoji: "🔔",
+    description: "Push notifications from one HTTP call, with two-way replies",
     url: "https://iotpush.com",
     docs: "https://iotpush.com/docs",
   },
   {
-    name: "WaitlistWin",
-    emoji: "🚀",
-    description: "Viral waitlists with referral tracking",
-    url: "https://waitlistwin.com",
+    name: "ZapLock",
+    emoji: "🔒",
+    description: "Encrypt a folder in place, unlock with Sign in with ZapQR",
+    url: "https://zaplock.io",
     docs: null,
   },
   {
-    name: "SenseStamp",
-    emoji: "🔐",
-    description: "Tamper-proof IoT event verification",
-    url: "https://sensestamp.com",
+    name: "ZapDrop",
+    emoji: "📺",
+    description: "Rotating-QR screens and GameHub for stands and storefronts",
+    url: "https://screens.zapdrop.ai",
+    docs: null,
+  },
+  {
+    name: "Voice Cloner",
+    emoji: "🎙️",
+    description: "AI text-to-speech in your own voice (iOS)",
+    url: "https://dasecure.com/voice-cloner",
+    docs: null,
+  },
+  {
+    name: "FastFlow",
+    emoji: "⏱️",
+    description: "Fasting tracker with live Garmin biometrics (iOS)",
+    url: "https://fastflowapp.com",
     docs: null,
   },
   {
     name: "just25",
     emoji: "🧠",
     description: "Speed & reflex brain game — tap 1 to 25",
-    url: "https://apps.apple.com/app/just25",
+    url: "https://apps.apple.com/us/app/just25/id6758323002",
     docs: null,
   },
 ];
@@ -47,6 +103,23 @@ const products = [
 export default function SupportPage() {
   return (
     <div className="min-h-screen bg-gray-950 text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd([
+            breadcrumbs([{ name: "Support", path: "/support" }]),
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faq.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+          ]),
+        }}
+      />
       <div className="max-w-3xl mx-auto px-6 py-16">
         {/* Header */}
         <div className="mb-12">
@@ -109,13 +182,7 @@ export default function SupportPage() {
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-4">FAQ</h2>
           <div className="space-y-4">
-            {[
-              { q: "How do I reset my password?", a: "Go to your product dashboard → Settings → Change Password. Or use the \"Forgot Password\" link on the login page." },
-              { q: "How do I cancel my subscription?", a: "Go to your product dashboard → Billing → Manage Subscription. You can cancel anytime." },
-              { q: "Do you offer refunds?", a: "Yes — if you're unsatisfied, contact us within 14 days of purchase for a full refund." },
-              { q: "Is my data secure?", a: "Absolutely. All data is encrypted in transit (TLS) and at rest. We use Supabase with row-level security and never share your data with third parties." },
-              { q: "Which platforms are supported?", a: "Our web dashboards work on all modern browsers. Mobile apps are available for iOS, with Android coming soon." },
-            ].map(({ q, a }) => (
+            {faq.map(({ q, a }) => (
               <div key={q} className="bg-gray-800/50 border border-gray-700 rounded-xl p-5">
                 <h3 className="font-medium mb-2">{q}</h3>
                 <p className="text-gray-400 text-sm">{a}</p>
@@ -126,7 +193,7 @@ export default function SupportPage() {
 
         {/* Footer */}
         <div className="text-center text-gray-600 text-sm pt-8 border-t border-gray-800">
-          <p>© 2026 DaSecure Solutions LLC</p>
+          <p>© {new Date().getFullYear()} DaSecure Solutions LLC</p>
         </div>
       </div>
     </div>

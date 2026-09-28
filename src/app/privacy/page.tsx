@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | DaSecure Solutions",
-  description: "Privacy policy for DaSecure Solutions products — PassQR, iotpush, WaitlistWin, SenseStamp, and just25.",
+  title: "Privacy Policy",
+  alternates: { canonical: "https://dasecure.com/privacy" },
+  description: "Privacy policy for DaSecure Solutions and its products — ZapQR, PassQR, iotPush, ZapLock, ZapDrop, Voice Cloner, FastFlow and just25 — and for website analytics on dasecure.com.",
 };
 
 export default function PrivacyPage() {
@@ -15,7 +16,7 @@ export default function PrivacyPage() {
         </Link>
 
         <h1 className="text-3xl font-bold mb-2">Privacy Policy</h1>
-        <p className="text-gray-500 mb-10">Last updated: February 2, 2026</p>
+        <p className="text-gray-500 mb-10">Last updated: September 27, 2026</p>
 
         <div className="prose prose-invert prose-gray max-w-none space-y-8 text-gray-300 leading-relaxed">
           <section>
@@ -96,6 +97,21 @@ export default function PrivacyPage() {
               <li><strong className="text-white">Google OAuth</strong> — optional sign-in</li>
             </ul>
             <p>Each service has its own privacy policy. We only share the minimum data required for each service to function.</p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-white">Website Analytics</h2>
+            <p>
+              dasecure.com uses Google Analytics 4 to understand which pages and sections people read and which
+              links they follow. It records page views, section views, scroll depth and clicks on links and
+              buttons, with the page path and a coarse device and country. It does not record what you type.
+            </p>
+            <ul className="list-disc pl-6 space-y-1">
+              <li>Google signals and advertising features are turned off; nothing is used for ads or personalisation.</li>
+              <li>Visitors in the EEA, the United Kingdom and Switzerland are measured without cookies (analytics storage is denied by default there).</li>
+              <li>This applies to the dasecure.com website only. What each app or product collects is described on its own store listing and in the sections above.</li>
+              <li>You can opt out everywhere with the <a href="https://tools.google.com/dlpage/gaoptout" className="text-emerald-400 hover:underline" target="_blank" rel="noopener noreferrer">Google Analytics opt-out add-on</a>.</li>
+            </ul>
           </section>
 
           <section>

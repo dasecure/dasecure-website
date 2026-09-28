@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { faqs } from "./faq";
+import { homeGraph, jsonLd } from "./structured-data";
 
 /* ------------------------------------------------------------------ */
 /* Flagship products — the sharpened focus                             */
@@ -129,13 +131,14 @@ const flagships: Flagship[] = [
       "HTTP API",
       "Topics per device",
       "Two-way actions & replies",
-      "Priorities & tap-through",
+      "Lock-screen multiple choice",
+      "Apple Shortcuts",
       "MCP server",
     ],
     url: "https://iotpush.com",
     urlLabel: "iotpush.com",
-    links: [],
-    appStoreUrl: "https://apps.apple.com/us/app/id6758430222",
+    links: [{ label: "Docs", href: "https://iotpush.com/docs" }],
+    appStoreUrl: "https://apps.apple.com/us/app/iotpushr/id6758430222",
     playStoreUrl:
       "https://play.google.com/store/apps/details?id=com.dasecure.iotpush",
     accent: {
@@ -171,6 +174,11 @@ const wiring = [
     to: "PassQR",
     text: "When a message matters, it lands twice: as a push, and as a live update on the wallet pass already on the lock screen.",
   },
+  {
+    from: "ZapDrop",
+    to: "iotPush",
+    text: "“Connect with ZapQR”: approve once, and every scan on that screen buzzes your phone. No API key changes hands — and you can cut the link from either side.",
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -185,6 +193,7 @@ type FamilyMember = {
   role: string;
   url: string;
   urlLabel: string;
+  links?: { label: string; href: string }[];
   appStoreUrl?: string;
   playStoreUrl?: string;
   status?: string;
@@ -198,14 +207,14 @@ const family: FamilyMember[] = [
     icon: "/zaplock-icon.svg",
     what: "Folder encryption",
     description:
-      "Encrypt a folder where it sits — same name, same path — and unlock it by signing in with ZapQR. Share it with someone by their address, revoke them in a tap, and every unlocked folder relocks the moment the session ends.",
+      "Encrypt a folder where it sits — same name, same path, in iCloud Drive, Dropbox or Google Drive — and unlock it by signing in with ZapQR. Share it with someone by their address, revoke them in a tap, and every unlocked folder relocks the moment the session ends. Free, no in-app purchases.",
     role: "Identity decides who can open your files.",
-    url: "https://zaplock.zapqr.ai",
-    urlLabel: "zaplock.zapqr.ai",
-    appStoreUrl: "https://apps.apple.com/app/id6808469062",
+    url: "https://zaplock.io",
+    urlLabel: "zaplock.io",
+    appStoreUrl: "https://apps.apple.com/us/app/zaplock/id6808469062",
     playStoreUrl:
       "https://play.google.com/store/apps/details?id=ai.zapqr.zaplock",
-    status: "Live · Mac, iPhone, iPad and Android",
+    status: "Live · v1.1 · Mac, iPhone, iPad and Android",
     accentText: "text-indigo-300",
     accentRule: "bg-indigo-400",
   },
@@ -214,11 +223,12 @@ const family: FamilyMember[] = [
     icon: "/zapdrop-icon.svg",
     what: "Presence-bound collateral",
     description:
-      "A screen shows a rotating QR instead of a flyer rack. Someone scans, approves with Face ID, and the one-pager arrives in their inbox — no form, no typing, no app. You get a verified address; they get no paper to throw away.",
+      "A screen shows a rotating QR instead of a flyer rack. Someone scans, approves with Face ID, and the one-pager arrives in their inbox — no form, no typing, no app. You get a verified address; they get no paper to throw away. GameHub turns the same screen into a branded game the phone controls — every play is a lead.",
     role: "Identity turns a passer-by into a known contact.",
     url: "https://screens.zapdrop.ai",
     urlLabel: "screens.zapdrop.ai",
-    status: "Live · storefronts and trade-show stands",
+    links: [{ label: "GameHub · app.zapdrop.ai", href: "https://app.zapdrop.ai" }],
+    status: "Live · storefronts, expo stands and GameHub",
     accentText: "text-sky-300",
     accentRule: "bg-sky-400",
   },
@@ -263,6 +273,74 @@ const alsoBuilt = [
 ];
 
 /* ------------------------------------------------------------------ */
+/* Recent releases — dated, verifiable, newest first                   */
+/* ------------------------------------------------------------------ */
+
+const releases: {
+  date: string;
+  iso: string;
+  product: string;
+  title: string;
+  detail: string;
+  href: string;
+}[] = [
+  {
+    date: "27 Sep 2026",
+    iso: "2026-09-27",
+    product: "ZapLock",
+    title: "ZapLock 1.1 for iPhone, iPad and Mac",
+    detail:
+      "Remove ZapLock turns a protected folder back into a normal one for good; a folder unlocked in place on another device opens read-only here, so nobody’s changes get overwritten.",
+    href: "https://apps.apple.com/us/app/zaplock/id6808469062",
+  },
+  {
+    date: "27 Sep 2026",
+    iso: "2026-09-27",
+    product: "ZapDrop + iotPush",
+    title: "Connect with ZapQR: scan alerts on your phone",
+    detail:
+      "Press Connect on a ZapDrop screen, approve “Connect ZapDrop to iotPush?” once, and every scan is pushed to your phone. iotPush Settings now lists connected products so you can disconnect from either side.",
+    href: "https://screens.zapdrop.ai",
+  },
+  {
+    date: "26 Sep 2026",
+    iso: "2026-09-26",
+    product: "iotPush",
+    title: "iotpushr 2.3.0 for iOS",
+    detail:
+      "Apple Shortcuts can send a notification or ask a question; multiple-choice questions are answered from the lock screen; the inbox is searchable.",
+    href: "https://apps.apple.com/us/app/iotpushr/id6758430222",
+  },
+  {
+    date: "26 Sep 2026",
+    iso: "2026-09-26",
+    product: "ZapDrop",
+    title: "GameHub at app.zapdrop.ai",
+    detail:
+      "Ten branded games — prize wheel, quiz, slots, brick breaker and more — on any screen, with the phone as the controller. Sign in with ZapQR, seven-day free trial.",
+    href: "https://app.zapdrop.ai",
+  },
+  {
+    date: "19 Sep 2026",
+    iso: "2026-09-19",
+    product: "ZapLock",
+    title: "ZapLock 1.0 live on the App Store and Google Play",
+    detail:
+      "One universal app for iPhone, iPad and Mac, plus Android. Folder encryption in place, unlocked by Sign in with ZapQR.",
+    href: "https://zaplock.io",
+  },
+  {
+    date: "12 Sep 2026",
+    iso: "2026-09-12",
+    product: "ZapQR",
+    title: "ZapQR 1.6 on the App Store; Passkeys & Passwords on Google Play",
+    detail:
+      "Device-link scanner, the QR-pixel brand, and ZapQR Premium ($2.99/mo or $29.99/yr, 14-day trial). Android ships as “ZapQR: Passkeys & Passwords”.",
+    href: "https://apps.apple.com/us/app/zapqr/id6759184276",
+  },
+];
+
+/* ------------------------------------------------------------------ */
 
 function AppleIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -288,12 +366,18 @@ export default function Home() {
     { href: "#together", label: "How it fits" },
     { href: "#family", label: "Built on ZapQR" },
     { href: "#lab", label: "In the lab" },
+    { href: "#releases", label: "Releases" },
+    { href: "#faq", label: "FAQ" },
     { href: "#about", label: "About" },
     { href: "#contact", label: "Contact" },
   ];
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(homeGraph) }}
+      />
       {/* ---------------------------------------------------------- Nav */}
       <nav className="fixed w-full bg-gray-950/80 backdrop-blur-md z-50 border-b border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -674,6 +758,17 @@ export default function Home() {
                     >
                       {f.urlLabel} →
                     </Link>
+                    {f.links?.map((l) => (
+                      <Link
+                        key={l.href}
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-gray-500 hover:text-gray-300 transition"
+                      >
+                        {l.label}
+                      </Link>
+                    ))}
                     {f.appStoreUrl && (
                       <Link
                         href={f.appStoreUrl}
@@ -812,6 +907,85 @@ export default function Home() {
                 whatever it shows is what the key will sign.
               </figcaption>
             </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------- Releases */}
+      <section id="releases" className="py-20 px-6 bg-gray-900/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold mb-3">Recent releases</h2>
+          <p className="text-gray-400 mb-10 max-w-2xl">
+            What shipped, when, and where to get it. Newest first.
+          </p>
+          <ol className="relative border-l border-gray-800 ml-2">
+            {releases.map((r) => (
+              <li key={r.iso + r.title} className="pl-8 pb-9 last:pb-0 relative">
+                <span
+                  aria-hidden
+                  className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-emerald-400"
+                />
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                  <time
+                    dateTime={r.iso}
+                    className="font-mono text-xs text-gray-500"
+                  >
+                    {r.date}
+                  </time>
+                  <span className="text-xs uppercase tracking-widest text-emerald-400/80">
+                    {r.product}
+                  </span>
+                </div>
+                <h3 className="text-lg font-semibold">
+                  <Link
+                    href={r.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-300 transition"
+                  >
+                    {r.title}
+                  </Link>
+                </h3>
+                <p className="text-sm text-gray-400 mt-1 max-w-3xl leading-relaxed">
+                  {r.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------- FAQ */}
+      <section id="faq" className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold mb-3">Frequently asked questions</h2>
+          <p className="text-gray-400 mb-10 max-w-2xl">
+            Short, factual answers. Everything here is also in{" "}
+            <Link href="/llms.txt" className="underline hover:text-white">
+              /llms.txt
+            </Link>{" "}
+            for assistants that read plain text.
+          </p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {faqs.map((f) => (
+              <details
+                key={f.q}
+                className="group bg-gray-900/40 border border-gray-800 rounded-xl open:border-gray-600 transition"
+              >
+                <summary className="cursor-pointer list-none px-6 py-5 flex items-start justify-between gap-4">
+                  <h3 className="font-semibold text-gray-100">{f.q}</h3>
+                  <span
+                    aria-hidden
+                    className="text-gray-500 group-open:rotate-45 transition-transform text-xl leading-none"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="px-6 pb-6 text-sm text-gray-400 leading-relaxed">
+                  {f.a}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

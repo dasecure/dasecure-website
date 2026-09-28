@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -10,18 +9,24 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dasecure.com"),
-  title: "DaSecure Solutions | Passwordless Identity, Wallet Credentials & Alerts",
+  title: {
+    default: "DaSecure | Passwordless Sign-in, Wallet Credentials & Push Alerts",
+    template: "%s | DaSecure Solutions",
+  },
   description,
+  applicationName: "DaSecure Solutions",
   keywords: [
     "passwordless authentication",
     "OpenID Connect identity provider",
     "sign in with ZapQR",
     "passkeys",
     "QR code login",
+    "device flow login",
     "Apple Wallet passes",
     "Google Wallet passes",
     "digital loyalty cards",
     "push notifications API",
+    "two-way push notifications",
     "proof of presence",
     "folder encryption",
     "ZapQR",
@@ -31,13 +36,17 @@ export const metadata: Metadata = {
     "iotPush",
     "DaSecure",
   ],
-  authors: [{ name: "DaSecure Solutions LLC" }],
+  authors: [{ name: "DaSecure Solutions LLC", url: "https://dasecure.com" }],
+  creator: "DaSecure Solutions LLC",
+  publisher: "DaSecure Solutions LLC",
+  category: "technology",
   icons: {
     icon: "/icon-512.png",
     apple: "/apple-touch-icon.png",
   },
   alternates: {
     canonical: "https://dasecure.com",
+    types: { "text/plain": "https://dasecure.com/llms.txt" },
   },
   openGraph: {
     title: "DaSecure Solutions | Proof of who, what and where",
@@ -64,80 +73,17 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
-};
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "DaSecure Solutions LLC",
-  url: "https://dasecure.com",
-  email: "info@dasecure.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "San Francisco",
-    addressRegion: "CA",
-    addressCountry: "US",
-  },
-  sameAs: ["https://github.com/dasecure"],
-  makesOffer: [
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "SoftwareApplication",
-        name: "ZapQR",
-        applicationCategory: "SecurityApplication",
-        url: "https://zapqr.ai",
-        description:
-          "Passwordless OpenID Connect identity provider with passkeys and device-link QR sign-in.",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "SoftwareApplication",
-        name: "PassQR",
-        applicationCategory: "BusinessApplication",
-        url: "https://passqr.com",
-        description:
-          "Apple and Google Wallet passes for loyalty, membership and access credentials.",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "SoftwareApplication",
-        name: "iotPush",
-        applicationCategory: "DeveloperApplication",
-        url: "https://iotpush.com",
-        description:
-          "Push notification API for servers, scripts and IoT devices, with two-way actions and replies.",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "SoftwareApplication",
-        name: "ZapLock",
-        applicationCategory: "SecurityApplication",
-        operatingSystem: "macOS, iOS, iPadOS, Android",
-        url: "https://zapqr.ai/zaplock",
-        description:
-          "Encrypt a folder in place and unlock it by signing in with ZapQR. Share and revoke access by address.",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "SoftwareApplication",
-        name: "ZapDrop",
-        applicationCategory: "BusinessApplication",
-        url: "https://screens.zapdrop.ai",
-        description:
-          "A screen shows a rotating QR instead of a flyer rack; a scan and a Face ID approval deliver the one-pager to a verified address.",
-      },
-    },
-  ],
 };
 
 export default function RootLayout({
@@ -148,26 +94,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-R9LHW0V9VC"
-          strategy="afterInteractive"
-        />
-        <Script id="ga-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-R9LHW0V9VC');
-          `}
-        </Script>
-        <Script
-          id="org-schema"
-          type="application/ld+json"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-        />
+        {/* GA4 + click/section/scroll/FAQ tracking. Console-only until the
+            ID inside is real; ?ga_debug=1 mirrors events to the console. */}
+        <script src="/analytics.js" defer />
       </head>
       <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
