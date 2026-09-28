@@ -217,3 +217,22 @@ export const homeGraph = {
   "@context": "https://schema.org",
   "@graph": [organization, website, ...products, faqPage],
 };
+
+export function breadcrumbs(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [{ name: "Home", path: "/" }, ...items].map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: `${SITE_URL}${it.path === "/" ? "" : it.path}`,
+    })),
+  };
+}
+
+/* Serialize for a <script type="application/ld+json"> without letting a
+ * stray "</script>" in copy break out of the tag. */
+export function jsonLd(data: unknown) {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
