@@ -39,7 +39,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What is ZapDrop?",
-    a: "ZapDrop replaces the flyer rack with a screen that shows a rotating QR code: a passer-by scans, approves with Face ID, and the one-pager lands in their inbox while you get a verified address. Plans start at $79 a month for the first screen or $399 for a seven-day event pass. ZapDrop GameHub (app.zapdrop.ai) adds branded games — prize wheel, quiz, slots and more — played on any screen with the phone as the controller, where every play is a lead.",
+    a: "ZapDrop replaces the flyer rack with a screen that shows a rotating QR code: a passer-by scans, approves with Face ID, and the one-pager lands in their inbox while you get a verified address. Plans start at $79 a month for the first screen or $399 for a seven-day event pass.",
   },
   {
     q: "Is IdentityStick available?",

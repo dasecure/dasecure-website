@@ -174,14 +174,12 @@ const products = [
     os: "Web",
     price: "79",
     description:
-      "A screen shows a rotating QR instead of a flyer rack; a scan and a Face ID approval deliver the one-pager to a verified address. ZapDrop GameHub adds branded games played with the phone as the controller, where every play is a lead.",
-    sameAs: ["https://app.zapdrop.ai"],
+      "A screen shows a rotating QR instead of a flyer rack; a scan and a Face ID approval deliver the one-pager to a verified address.",
     features: [
       "Rotating QR with deduped impressions",
       "Face ID approval through ZapQR",
       "One-pager emailed to a verified address",
       "Scan alerts to your phone via iotPush",
-      "GameHub: prize wheel, quiz, slots and more",
     ],
   }),
 ];

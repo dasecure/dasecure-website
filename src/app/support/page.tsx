@@ -73,7 +73,7 @@ const products = [
   {
     name: "ZapDrop",
     emoji: "📺",
-    description: "Rotating-QR screens and GameHub for stands and storefronts",
+    description: "Rotating-QR screens for stands and storefronts",
     url: "https://screens.zapdrop.ai",
     docs: null,
   },

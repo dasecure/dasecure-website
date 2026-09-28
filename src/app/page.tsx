@@ -223,12 +223,11 @@ const family: FamilyMember[] = [
     icon: "/zapdrop-icon.svg",
     what: "Presence-bound collateral",
     description:
-      "A screen shows a rotating QR instead of a flyer rack. Someone scans, approves with Face ID, and the one-pager arrives in their inbox — no form, no typing, no app. You get a verified address; they get no paper to throw away. GameHub turns the same screen into a branded game the phone controls — every play is a lead.",
+      "A screen shows a rotating QR instead of a flyer rack. Someone scans, approves with Face ID, and the one-pager arrives in their inbox — no form, no typing, no app. You get a verified address; they get no paper to throw away.",
     role: "Identity turns a passer-by into a known contact.",
     url: "https://screens.zapdrop.ai",
     urlLabel: "screens.zapdrop.ai",
-    links: [{ label: "GameHub · app.zapdrop.ai", href: "https://app.zapdrop.ai" }],
-    status: "Live · storefronts, expo stands and GameHub",
+    status: "Live · storefronts and expo stands",
     accentText: "text-sky-300",
     accentRule: "bg-sky-400",
   },
@@ -310,15 +309,6 @@ const releases: {
     detail:
       "Apple Shortcuts can send a notification or ask a question; multiple-choice questions are answered from the lock screen; the inbox is searchable.",
     href: "https://apps.apple.com/us/app/iotpushr/id6758430222",
-  },
-  {
-    date: "26 Sep 2026",
-    iso: "2026-09-26",
-    product: "ZapDrop",
-    title: "GameHub at app.zapdrop.ai",
-    detail:
-      "Ten branded games — prize wheel, quiz, slots, brick breaker and more — on any screen, with the phone as the controller. Sign in with ZapQR, seven-day free trial.",
-    href: "https://app.zapdrop.ai",
   },
   {
     date: "19 Sep 2026",
