@@ -57,6 +57,7 @@ const app = (o: {
   sameAs?: string[];
   features: string[];
   price?: string;
+  plans?: { name: string; price: string }[];
   version?: string;
 }) => ({
   "@type": "SoftwareApplication",
@@ -70,11 +71,18 @@ const app = (o: {
   ...(o.downloads ? { downloadUrl: o.downloads } : {}),
   ...(o.sameAs ? { sameAs: o.sameAs } : {}),
   ...(o.version ? { softwareVersion: o.version } : {}),
-  offers: {
-    "@type": "Offer",
-    price: o.price ?? "0",
-    priceCurrency: "USD",
-  },
+  offers: o.plans
+    ? o.plans.map((p) => ({
+        "@type": "Offer",
+        name: p.name,
+        price: p.price,
+        priceCurrency: "USD",
+      }))
+    : {
+        "@type": "Offer",
+        price: o.price ?? "0",
+        priceCurrency: "USD",
+      },
   publisher: { "@id": ORG_ID },
   author: { "@id": ORG_ID },
 });
@@ -115,6 +123,12 @@ const products = [
       "Apple Wallet and Google Wallet passes for loyalty, membership and access credentials, with live stamp and reward push, a counter scanner PWA and a multi-tenant API.",
     downloads: ["https://apps.apple.com/us/app/passqr-scanner/id6758465630"],
     sameAs: ["https://scan.passqr.com", "https://loyalty.passqr.com"],
+    plans: [
+      { name: "Free", price: "0" },
+      { name: "Starter", price: "29" },
+      { name: "Growth", price: "79" },
+      { name: "Chain", price: "199" },
+    ],
     features: [
       "Apple + Google Wallet passes",
       "Live stamp and reward push",
@@ -135,6 +149,11 @@ const products = [
     downloads: [
       "https://apps.apple.com/us/app/iotpushr/id6758430222",
       "https://play.google.com/store/apps/details?id=com.dasecure.iotpush",
+    ],
+    plans: [
+      { name: "Free", price: "0" },
+      { name: "Team", price: "29" },
+      { name: "Pro", price: "49" },
     ],
     features: [
       "HTTP API",
