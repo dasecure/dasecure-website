@@ -8,7 +8,7 @@
 - ZapQR (zapqr.ai): hosted OpenID Connect identity provider. "Sign in with ZapQR" with passkeys or a QR scan from the phone; RFC 8628 device flow for kiosks, TVs, cars and staff terminals; WordPress, Drupal and Shopify integrations; Chrome extension. The iOS/Android app is a passkey and password manager with autofill and TOTP. Free tier 10 passwords / 5 passkeys / 5 notes; Premium $2.99/month or $29.99/year, 14-day trial.
 - PassQR (passqr.com): loyalty, membership and access credentials as Apple Wallet and Google Wallet passes, with live stamp/reward push, a counter scanner PWA (scan.passqr.com), an iOS scanner app and a multi-tenant API. Target customers: cafés, gyms, salons, retail, market stalls.
 - iotPush (iotpush.com): one HTTP POST → push notification on your phone. Topics per device, two-way action buttons and typed replies, lock-screen multiple choice, Apple Shortcuts, MCP server. iOS app "iotpushr" and Android app. Free tier 3 topics / 100 messages a month.
-- ZapLock (zaplock.io): encrypt a folder in place (iCloud Drive, Dropbox, Google Drive, on device) and unlock it by signing in with ZapQR. AES-256, split key with the Secure Enclave, share/revoke by ZapQR account. Free, no in-app purchases. Mac, iPhone, iPad, Android. Current version 1.1.
+- ZapLock (zaplock.io): encrypt a folder in place (iCloud Drive, Dropbox, Google Drive, on device) and unlock it by signing in with ZapQR. AES-256 with the key split between the device and ZapQR, share/revoke by ZapQR account. Free, no in-app purchases. Runs on iPhone, iPad, Mac, Windows and Android; a folder locked on one platform opens on the others.
 - ZapDrop (screens.zapdrop.ai): a screen shows a rotating QR instead of a flyer rack; scan + Face ID approval → one-pager emailed to a verified address. $99 setup + $79/month first screen, $29 each additional, 300 impressions included; $399 per 7-day event; $149 presence beacon (pre-order).
 - PassQR Tag (tag.passqr.com): a sticker on a car, bag or gate that lets a stranger reach the owner without either side holding an identifier for the other. Private beta, patent pending.
 - IdentityStick (demo.identitystick.com): early demo / hardware prototype of quorum approval (ZapQR sign-in + phone approval + physical signer). Not a product.
@@ -25,6 +25,7 @@
 - [PassQR Scanner on the App Store](https://apps.apple.com/us/app/passqr-scanner/id6758465630): counter scanner for PassQR.
 - [ZapLock on the App Store](https://apps.apple.com/us/app/zaplock/id6808469062): universal iPhone, iPad and Mac app.
 - [ZapLock on Google Play](https://play.google.com/store/apps/details?id=ai.zapqr.zaplock): ZapLock for Android.
+- [ZapLock on the Microsoft Store](https://apps.microsoft.com/detail/9PF9CLKD133K): ZapLock for Windows.
 
 ## Docs and consoles
 

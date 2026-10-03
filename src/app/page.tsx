@@ -211,10 +211,8 @@ const family: FamilyMember[] = [
     role: "Identity decides who can open your files.",
     url: "https://zaplock.io",
     urlLabel: "zaplock.io",
-    appStoreUrl: "https://apps.apple.com/us/app/zaplock/id6808469062",
-    playStoreUrl:
-      "https://play.google.com/store/apps/details?id=ai.zapqr.zaplock",
-    status: "Live · v1.1 · Mac, iPhone, iPad and Android",
+    links: [{ label: "Download for all 4 platforms ↑", href: "#zaplock" }],
+    status: "Live · iPhone, iPad, Mac, Windows and Android",
     accentText: "text-indigo-300",
     accentRule: "bg-indigo-400",
   },
@@ -284,6 +282,15 @@ const releases: {
   href: string;
 }[] = [
   {
+    date: "1 Oct 2026",
+    iso: "2026-10-01",
+    product: "ZapLock",
+    title: "ZapLock for Windows on the Microsoft Store",
+    detail:
+      "ZapLock now runs on every major platform — iPhone, iPad, Mac, Windows and Android. Lock a folder on a Mac and open it on a Windows PC or an Android phone. Free everywhere.",
+    href: "https://apps.microsoft.com/detail/9PF9CLKD133K",
+  },
+  {
     date: "27 Sep 2026",
     iso: "2026-09-27",
     product: "ZapLock",
@@ -332,6 +339,82 @@ const releases: {
 
 /* ------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------ */
+/* ZapLock spotlight — every major platform, one store link each        */
+/* ------------------------------------------------------------------ */
+
+const zaplockPlatforms: {
+  platform: string;
+  devices: string;
+  store: string;
+  href: string;
+  icon: "apple" | "windows" | "play";
+}[] = [
+  {
+    platform: "iOS",
+    devices: "iPhone & iPad",
+    store: "App Store",
+    href: "https://apps.apple.com/us/app/zaplock/id6808469062",
+    icon: "apple",
+  },
+  {
+    platform: "macOS",
+    devices: "Mac",
+    store: "Mac App Store",
+    href: "https://apps.apple.com/us/app/zaplock/id6808469062?mt=12",
+    icon: "apple",
+  },
+  {
+    platform: "Windows",
+    devices: "Windows PC",
+    store: "Microsoft Store",
+    href: "https://apps.microsoft.com/detail/9PF9CLKD133K",
+    icon: "windows",
+  },
+  {
+    platform: "Android",
+    devices: "Phones & tablets",
+    store: "Google Play",
+    href: "https://play.google.com/store/apps/details?id=ai.zapqr.zaplock",
+    icon: "play",
+  },
+];
+
+const zaplockPoints = [
+  {
+    title: "Stays where it is",
+    text: "Same name, same path — in iCloud Drive, Dropbox, Google Drive or on the device.",
+  },
+  {
+    title: "Your sign-in is the key",
+    text: "AES-256, with the key split between your device and ZapQR. No single party holds it whole.",
+  },
+  {
+    title: "Share, then revoke",
+    text: "Add anyone with a ZapQR account by address. Take it back in a tap; unlocked folders relock when the session ends.",
+  },
+];
+
+function WindowsIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 5.1l7.4-1v7.2H3V5.1zm0 13.8l7.4 1v-7.1H3v6.1zm8.2 1.1L21 21.4v-8.6h-9.8V20zm0-15.9v7.3H21V2.6l-9.8 1.5z" />
+    </svg>
+  );
+}
+
+function StoreIcon({
+  kind,
+  className,
+}: {
+  kind: "apple" | "windows" | "play";
+  className?: string;
+}) {
+  if (kind === "windows") return <WindowsIcon className={className} />;
+  if (kind === "play") return <PlayIcon className={className} />;
+  return <AppleIcon className={className} />;
+}
+
 function AppleIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -353,6 +436,7 @@ export default function Home() {
 
   const navLinks = [
     { href: "#platform", label: "Platform" },
+    { href: "#zaplock", label: "ZapLock" },
     { href: "#together", label: "How it fits" },
     { href: "#family", label: "Built on ZapQR" },
     { href: "#lab", label: "In the lab" },
@@ -375,7 +459,7 @@ export default function Home() {
             <span className="text-emerald-400">da</span>secure
           </Link>
 
-          <div className="hidden md:flex gap-7 items-center">
+          <div className="hidden lg:flex gap-7 items-center">
             {navLinks.map((l) => (
               <Link
                 key={l.href}
@@ -388,7 +472,7 @@ export default function Home() {
           </div>
 
           <button
-            className="md:hidden text-gray-300 hover:text-white transition"
+            className="lg:hidden text-gray-300 hover:text-white transition"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -418,7 +502,7 @@ export default function Home() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-800 bg-gray-950/95 backdrop-blur-md">
+          <div className="lg:hidden border-t border-gray-800 bg-gray-950/95 backdrop-blur-md">
             <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((l) => (
                 <Link
@@ -442,6 +526,27 @@ export default function Home() {
           className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[60rem] h-[36rem] bg-emerald-500/10 blur-[120px] rounded-full"
         />
         <div className="relative max-w-6xl mx-auto">
+          <Link
+            href="#zaplock"
+            className="group inline-flex items-center gap-2 sm:gap-3 mb-8 rounded-full border border-indigo-400/30 bg-indigo-500/10 pl-1.5 pr-3 sm:pr-4 py-1.5 text-xs sm:text-sm hover:border-indigo-400/60 hover:bg-indigo-500/15 transition"
+          >
+            <span className="rounded-full bg-indigo-400 text-black text-xs font-semibold px-2.5 py-0.5">
+              New
+            </span>
+            <span className="text-gray-200">
+              ZapLock is on iOS, Mac, Windows{" "}
+              <span className="sm:hidden">&amp;</span>
+              <span className="hidden sm:inline">and</span> Android
+            </span>
+            <span className="flex items-center gap-1.5 text-indigo-300">
+              <AppleIcon className="hidden sm:block w-3.5 h-3.5" />
+              <WindowsIcon className="hidden sm:block w-3.5 h-3.5" />
+              <PlayIcon className="hidden sm:block w-3.5 h-3.5" />
+              <span className="group-hover:translate-x-0.5 transition-transform">
+                →
+              </span>
+            </span>
+          </Link>
           <p className="text-sm font-mono tracking-widest text-emerald-400/80 mb-6">
             DASECURE SOLUTIONS LLC · SAN FRANCISCO
           </p>
@@ -489,6 +594,108 @@ export default function Home() {
                 <p className="text-sm text-gray-500 mt-1">{p.name}</p>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------- ZapLock spotlight */}
+      <section id="zaplock" className="py-20 px-6 scroll-mt-20">
+        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-3xl border border-indigo-400/20 bg-gradient-to-br from-indigo-950/60 via-gray-950 to-gray-950">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 -right-24 w-[36rem] h-[28rem] bg-indigo-500/15 blur-[110px] rounded-full"
+          />
+          <div className="relative grid lg:grid-cols-[1.1fr_1fr] gap-12 p-8 md:p-12">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/zaplock-icon.svg"
+                  alt="ZapLock"
+                  className="w-12 h-12 rounded-xl"
+                />
+                <div>
+                  <p className="text-lg font-bold leading-tight">ZapLock</p>
+                  <p className="text-xs uppercase tracking-widest text-indigo-300/80">
+                    Folder encryption · Built on ZapQR
+                  </p>
+                </div>
+              </div>
+
+              <h2 className="text-3xl md:text-5xl font-bold leading-[1.1] mb-5">
+                Lock it on a Mac.{" "}
+                <span className="text-indigo-300">
+                  Open it on Windows, iPhone or Android.
+                </span>
+              </h2>
+              <p className="text-lg text-gray-400 mb-8 max-w-xl">
+                ZapLock encrypts any folder exactly where it sits, and your
+                ZapQR sign-in is the key. Now on every major platform — free on
+                all of them, with no in-app purchases.
+              </p>
+
+              <ul className="space-y-4">
+                {zaplockPoints.map((pt) => (
+                  <li key={pt.title} className="flex gap-3">
+                    <span className="mt-2 w-1.5 h-1.5 shrink-0 rounded-full bg-indigo-400" />
+                    <p className="text-sm text-gray-400 leading-relaxed">
+                      <span className="text-gray-100 font-semibold">
+                        {pt.title}.
+                      </span>{" "}
+                      {pt.text}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-col">
+              <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">
+                Available on
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {zaplockPlatforms.map((pl) => (
+                  <a
+                    key={pl.platform}
+                    href={pl.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-store={pl.store}
+                    className="group flex flex-col justify-between rounded-2xl border border-gray-800 bg-gray-900/60 p-4 sm:p-5 min-h-[9.5rem] hover:border-indigo-400/50 hover:bg-gray-900 transition"
+                  >
+                    <StoreIcon
+                      kind={pl.icon}
+                      className="w-7 h-7 text-gray-200 group-hover:text-indigo-300 transition"
+                    />
+                    <div>
+                      <p className="text-xl font-bold leading-tight">
+                        {pl.platform}
+                      </p>
+                      <p className="text-xs text-gray-500 mb-2">
+                        {pl.devices}
+                      </p>
+                      <p className="text-xs font-semibold text-indigo-300 whitespace-nowrap">
+                        {pl.store}{" "}
+                        <span className="inline-block group-hover:translate-x-0.5 transition-transform">
+                          →
+                        </span>
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-sm">
+                <p className="text-gray-500">Free · One ZapQR account for every device</p>
+                <Link
+                  href="https://zaplock.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-indigo-300 hover:text-indigo-200 transition"
+                >
+                  zaplock.io →
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -752,8 +959,9 @@ export default function Home() {
                       <Link
                         key={l.href}
                         href={l.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        {...(l.href.startsWith("#")
+                          ? {}
+                          : { target: "_blank", rel: "noopener noreferrer" })}
                         className="text-xs text-gray-500 hover:text-gray-300 transition"
                       >
                         {l.label}

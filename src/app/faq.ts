@@ -35,7 +35,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What is ZapLock and which platforms does it run on?",
-    a: "ZapLock encrypts a folder where it sits — same name, same path, in iCloud Drive, Dropbox, Google Drive or on the device — and unlocks it by signing in with ZapQR. Every file is AES-256 encrypted with a key split between the device’s Secure Enclave and ZapQR, so no single party holds a whole key. You can share a vault with anyone who has a ZapQR account and revoke them in a tap. ZapLock is free, with no in-app purchases, on Mac, iPhone, iPad and Android.",
+    a: "ZapLock encrypts a folder where it sits — same name, same path, in iCloud Drive, Dropbox, Google Drive or on the device — and unlocks it by signing in with ZapQR. Every file is AES-256 encrypted with a key split between the device and ZapQR, so no single party holds a whole key. You can share a vault with anyone who has a ZapQR account and revoke them in a tap. ZapLock runs on every major platform — iPhone and iPad (App Store), Mac (Mac App Store), Windows (Microsoft Store) and Android (Google Play) — so a folder locked on a Mac can be opened on a Windows PC or an Android phone. It is free on all of them, with no in-app purchases.",
   },
   {
     q: "What is ZapDrop?",
