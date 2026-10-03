@@ -27,7 +27,15 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      // Versioned media (/media/<slug>/v<N>/…) never changes in place —
+      // a re-cut goes to v<N+1> — so it can be cached forever.
+      {
+        source: "/media/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+    ];
   },
   poweredByHeader: false,
 };
