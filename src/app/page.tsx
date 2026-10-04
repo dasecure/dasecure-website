@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { faqs } from "./faq";
-import ExplainerVideo from "./explainer-video";
 import { homeGraph, jsonLd } from "./structured-data";
 
 /* ------------------------------------------------------------------ */
@@ -26,6 +25,7 @@ type Flagship = {
   playStoreUrl?: string;
   badge?: string;
   proof?: { text: string; href: string; cta: string };
+  signin?: string;
   accent: {
     ring: string;
     chip: string;
@@ -103,6 +103,8 @@ const flagships: Flagship[] = [
     ],
     url: "https://passqr.com",
     urlLabel: "passqr.com",
+    signin:
+      "Business owners sign into the PassQR console with ZapQR.",
     links: [
       { label: "scan.passqr.com", href: "https://scan.passqr.com" },
       {
@@ -138,6 +140,8 @@ const flagships: Flagship[] = [
     ],
     url: "https://iotpush.com",
     urlLabel: "iotpush.com",
+    signin:
+      "Sign in to iotPush by scanning with the ZapQR app, and every ZapQR sign-in can raise a push you end the session from.",
     links: [{ label: "Docs", href: "https://iotpush.com/docs" }],
     appStoreUrl: "https://apps.apple.com/us/app/iotpushr/id6758430222",
     playStoreUrl:
@@ -267,6 +271,34 @@ const alsoBuilt = [
     mark: "/mark-just25.png",
     tagline: "Speed & reflex brain game",
     url: "https://apps.apple.com/us/app/just25/id6758323002",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Behind the front door — what one ZapQR sign-in opens               */
+/* ------------------------------------------------------------------ */
+
+const doorway = [
+  {
+    name: "PassQR",
+    question: "What do you hold?",
+    what: "Wallet passes",
+    href: "#passqr",
+    rule: "bg-emerald-400",
+  },
+  {
+    name: "iotPush",
+    question: "Did it reach you?",
+    what: "Alerts you answer",
+    href: "#iotpush",
+    rule: "bg-orange-400",
+  },
+  {
+    name: "ZapLock",
+    question: "Who can open it?",
+    what: "Folder encryption",
+    href: "#zaplock",
+    rule: "bg-indigo-400",
   },
 ];
 
@@ -432,6 +464,155 @@ function PlayIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
+function FlagshipCard({ p }: { p: Flagship }) {
+  return (
+    <div
+      id={p.name.toLowerCase()}
+      className={`group relative overflow-hidden bg-gradient-to-br from-gray-800/70 to-gray-900 rounded-2xl border border-gray-700 ${p.accent.ring} transition scroll-mt-24`}
+    >
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute -top-24 -right-16 w-72 h-72 rounded-full bg-gradient-to-br ${p.accent.glow} to-transparent blur-3xl`}
+      />
+      <div className="relative p-8 md:p-10 grid md:grid-cols-3 gap-8">
+        {/* Left: identity */}
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            {p.icon ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={p.icon}
+                alt={p.name}
+                className="w-12 h-12 rounded-xl object-contain"
+              />
+            ) : (
+              <div className="text-4xl">{p.emoji}</div>
+            )}
+            <div>
+              <h3 className="text-2xl font-bold leading-tight">
+                {p.name}
+              </h3>
+              <p className="text-xs uppercase tracking-widest text-gray-500">
+                {p.layer}
+              </p>
+            </div>
+          </div>
+          <p className={`font-semibold mb-4 ${p.accent.link}`}>
+            {p.tagline}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <span
+              className={`text-xs px-3 py-1 rounded-full ${p.accent.badge}`}
+            >
+              Live
+            </span>
+            {p.badge && (
+              <span className="text-xs px-3 py-1 rounded-full bg-gray-700/60 text-gray-300">
+                {p.badge}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Right: substance */}
+        <div className="md:col-span-2">
+          <p className="text-gray-300 mb-6 leading-relaxed">
+            {p.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-7">
+            {p.chips.map((c) => (
+              <span
+                key={c}
+                className={`text-xs px-2.5 py-1 rounded-md border ${p.accent.chip}`}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+
+          {p.signin && (
+            <div className="flex items-start gap-3 mb-6 text-sm text-gray-400">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/zapqr-icon.svg"
+                alt=""
+                aria-hidden
+                className="w-5 h-5 rounded mt-0.5 shrink-0"
+              />
+              <p>
+                <span className="font-semibold text-lime-300">
+                  Signs in with ZapQR.
+                </span>{" "}
+                {p.signin}
+              </p>
+            </div>
+          )}
+
+          {p.proof && (
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 rounded-xl border border-gray-700/70 bg-gray-950/40 px-5 py-4">
+              <p className="text-sm text-gray-400 flex-1">{p.proof.text}</p>
+              <Link
+                href={p.proof.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-sm font-semibold whitespace-nowrap ${p.accent.link} transition`}
+              >
+                {p.proof.cta} →
+              </Link>
+            </div>
+          )}
+
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-5 border-t border-gray-700/60">
+            <Link
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`font-semibold transition ${p.accent.link}`}
+            >
+              {p.urlLabel} →
+            </Link>
+            {p.links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-gray-500 hover:text-gray-300 transition"
+              >
+                {l.label}
+              </Link>
+            ))}
+            <span className="flex-1" />
+            {p.appStoreUrl && (
+              <Link
+                href={p.appStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black text-white text-xs px-3 py-2 rounded-lg flex items-center gap-2 border border-gray-600 hover:bg-gray-900 transition"
+              >
+                <AppleIcon />
+                App Store
+              </Link>
+            )}
+            {p.playStoreUrl && (
+              <Link
+                href={p.playStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black text-white text-xs px-3 py-2 rounded-lg flex items-center gap-2 border border-gray-600 hover:bg-gray-900 transition"
+              >
+                <PlayIcon />
+                Google Play
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -440,7 +621,6 @@ export default function Home() {
     { href: "#zaplock", label: "ZapLock" },
     { href: "#together", label: "How it fits" },
     { href: "#family", label: "Built on ZapQR" },
-    { href: "#lab", label: "In the lab" },
     { href: "#releases", label: "Releases" },
     { href: "#faq", label: "FAQ" },
     { href: "#about", label: "About" },
@@ -548,52 +728,108 @@ export default function Home() {
               </span>
             </span>
           </Link>
-          <p className="text-sm font-mono tracking-widest text-emerald-400/80 mb-6">
+          <p className="text-sm font-mono tracking-widest text-lime-300/80 mb-6">
             DASECURE SOLUTIONS LLC · SAN FRANCISCO
           </p>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 max-w-4xl leading-[1.05]">
-            Proof of{" "}
-            <span className="text-emerald-400">who, what and where</span>
+            Sign in once.{" "}
+            <span className="text-lime-300">Everything else follows.</span>
           </h1>
           <p className="text-xl text-gray-400 mb-4 max-w-2xl">
-            Three products that answer the three questions every real-world
-            transaction turns on — who is this person, what are they entitled
-            to, and did the moment actually reach them.
+            ZapQR is passwordless sign-in for your apps — a passkey, or a scan
+            from the phone already in your pocket. It is also the front door to
+            everything we ship: PassQR, iotPush and ZapLock all sign you in
+            through it.
           </p>
           <p className="text-gray-500 mb-10 max-w-2xl">
-            Each one stands alone. Used together they replace a stack of
-            passwords, plastic cards and unread email.
+            Proof of who, what and where. ZapQR proves who you are; the products
+            behind it prove what you hold and that the moment reached you.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="#platform"
-              className="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-8 py-3 rounded-lg transition"
+              href="https://zapqr.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-lime-300 hover:bg-lime-200 text-black font-semibold px-8 py-3 rounded-lg transition"
             >
-              See the platform
+              Add ZapQR to your site
             </Link>
             <Link
-              href="#contact"
+              href="#platform"
               className="border border-gray-700 hover:border-gray-500 px-8 py-3 rounded-lg transition"
             >
-              Get in touch
+              See what it opens
             </Link>
           </div>
 
-          {/* Layer chips */}
-          <div className="mt-14 grid sm:grid-cols-3 gap-px bg-gray-800 rounded-xl overflow-hidden border border-gray-800">
-            {flagships.map((p) => (
-              <Link
-                key={p.name}
-                href="#platform"
-                className="bg-gray-950 px-6 py-5 hover:bg-gray-900 transition"
-              >
-                <div className={`w-8 h-0.5 mb-3 ${p.accent.rule}`} />
-                <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
-                  {p.layer}
+          {/* Front door: ZapQR on top, what it signs you into below */}
+          <div className="mt-14 rounded-xl overflow-hidden border border-gray-800">
+            <Link
+              href="#zapqr"
+              className="flex items-center gap-4 bg-lime-400/[0.06] hover:bg-lime-400/10 px-6 py-5 border-b border-gray-800 transition"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/zapqr-icon.svg"
+                alt=""
+                aria-hidden
+                className="w-9 h-9 rounded-lg"
+              />
+              <div className="flex-1">
+                <p className="text-xs uppercase tracking-widest text-lime-300/80 mb-0.5">
+                  Sign in · Who are you?
                 </p>
-                <p className="text-lg font-semibold">{p.question}</p>
-                <p className="text-sm text-gray-500 mt-1">{p.name}</p>
-              </Link>
+                <p className="text-lg font-semibold">ZapQR</p>
+              </div>
+              <span className="hidden sm:block text-sm text-gray-500">
+                Passkeys · phone scan · OpenID Connect
+              </span>
+            </Link>
+            <div className="grid sm:grid-cols-3 gap-px bg-gray-800">
+              {doorway.map((d) => (
+                <Link
+                  key={d.name}
+                  href={d.href}
+                  className="bg-gray-950 px-6 py-5 hover:bg-gray-900 transition"
+                >
+                  <div className={`w-8 h-0.5 mb-3 ${d.rule}`} />
+                  <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
+                    {d.what}
+                  </p>
+                  <p className="text-lg font-semibold">{d.question}</p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {d.name}{" "}
+                    <span className="text-gray-600">· signs in with ZapQR</span>
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------- Flagships */}
+      <section id="platform" className="py-20 px-6 scroll-mt-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold mb-3">The front door</h2>
+          <p className="text-gray-400 mb-12 max-w-2xl">
+            ZapQR signs people into your site — and into ours. Start here;
+            everything below it already signs in through it.
+          </p>
+
+          <FlagshipCard p={flagships[0]} />
+
+          <div className="flex items-center gap-4 my-10">
+            <div className="h-px flex-1 bg-gray-800" />
+            <p className="text-xs uppercase tracking-widest text-gray-500">
+              Signs you into
+            </p>
+            <div className="h-px flex-1 bg-gray-800" />
+          </div>
+
+          <div className="flex flex-col gap-6">
+            {flagships.slice(1).map((p) => (
+              <FlagshipCard key={p.name} p={p} />
             ))}
           </div>
         </div>
@@ -697,147 +933,6 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------------------------------------------- Flagships */}
-      <section id="platform" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-3">The platform</h2>
-          <p className="text-gray-400 mb-12 max-w-2xl">
-            Three products, shipping today on the web, iOS and Android.
-          </p>
-
-          <div className="flex flex-col gap-6">
-            {flagships.map((p) => (
-              <div
-                key={p.name}
-                className={`group relative overflow-hidden bg-gradient-to-br from-gray-800/70 to-gray-900 rounded-2xl border border-gray-700 ${p.accent.ring} transition`}
-              >
-                <div
-                  aria-hidden
-                  className={`pointer-events-none absolute -top-24 -right-16 w-72 h-72 rounded-full bg-gradient-to-br ${p.accent.glow} to-transparent blur-3xl`}
-                />
-                <div className="relative p-8 md:p-10 grid md:grid-cols-3 gap-8">
-                  {/* Left: identity */}
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      {p.icon ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={p.icon}
-                          alt={p.name}
-                          className="w-12 h-12 rounded-xl object-contain"
-                        />
-                      ) : (
-                        <div className="text-4xl">{p.emoji}</div>
-                      )}
-                      <div>
-                        <h3 className="text-2xl font-bold leading-tight">
-                          {p.name}
-                        </h3>
-                        <p className="text-xs uppercase tracking-widest text-gray-500">
-                          {p.layer}
-                        </p>
-                      </div>
-                    </div>
-                    <p className={`font-semibold mb-4 ${p.accent.link}`}>
-                      {p.tagline}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <span
-                        className={`text-xs px-3 py-1 rounded-full ${p.accent.badge}`}
-                      >
-                        Live
-                      </span>
-                      {p.badge && (
-                        <span className="text-xs px-3 py-1 rounded-full bg-gray-700/60 text-gray-300">
-                          {p.badge}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Right: substance */}
-                  <div className="md:col-span-2">
-                    <p className="text-gray-300 mb-6 leading-relaxed">
-                      {p.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-7">
-                      {p.chips.map((c) => (
-                        <span
-                          key={c}
-                          className={`text-xs px-2.5 py-1 rounded-md border ${p.accent.chip}`}
-                        >
-                          {c}
-                        </span>
-                      ))}
-                    </div>
-
-                    {p.proof && (
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 rounded-xl border border-gray-700/70 bg-gray-950/40 px-5 py-4">
-                        <p className="text-sm text-gray-400 flex-1">{p.proof.text}</p>
-                        <Link
-                          href={p.proof.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`text-sm font-semibold whitespace-nowrap ${p.accent.link} transition`}
-                        >
-                          {p.proof.cta} →
-                        </Link>
-                      </div>
-                    )}
-
-                    <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-5 border-t border-gray-700/60">
-                      <Link
-                        href={p.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`font-semibold transition ${p.accent.link}`}
-                      >
-                        {p.urlLabel} →
-                      </Link>
-                      {p.links.map((l) => (
-                        <Link
-                          key={l.href}
-                          href={l.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-gray-500 hover:text-gray-300 transition"
-                        >
-                          {l.label}
-                        </Link>
-                      ))}
-                      <span className="flex-1" />
-                      {p.appStoreUrl && (
-                        <Link
-                          href={p.appStoreUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-black text-white text-xs px-3 py-2 rounded-lg flex items-center gap-2 border border-gray-600 hover:bg-gray-900 transition"
-                        >
-                          <AppleIcon />
-                          App Store
-                        </Link>
-                      )}
-                      {p.playStoreUrl && (
-                        <Link
-                          href={p.playStoreUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-black text-white text-xs px-3 py-2 rounded-lg flex items-center gap-2 border border-gray-600 hover:bg-gray-900 transition"
-                        >
-                          <PlayIcon />
-                          Google Play
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -998,116 +1093,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ------------------------------------------------------- In lab */}
-      <section id="lab" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-3">In the lab</h2>
-          <p className="text-gray-400 mb-10 max-w-2xl">
-            Early work, shown early. Not a product yet.
-          </p>
-
-          <div className="relative overflow-hidden rounded-2xl border border-cyan-500/30 bg-gradient-to-br from-cyan-500/[0.07] to-gray-900 p-8 md:p-10">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -top-24 -left-16 w-72 h-72 rounded-full bg-cyan-400/10 blur-3xl"
-            />
-            <div className="relative grid md:grid-cols-3 gap-8">
-              <div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="text-xs px-3 py-1 rounded-full bg-cyan-400/15 text-cyan-300">
-                    Early demo
-                  </span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-gray-700/60 text-gray-300">
-                    Hardware prototype
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 mb-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/identitystick-icon.svg"
-                    alt="IdentityStick"
-                    className="w-12 h-12 rounded-xl object-contain"
-                  />
-                  <div>
-                    <h3 className="text-2xl font-bold leading-tight">
-                      IdentityStick
-                    </h3>
-                    <p className="text-xs uppercase tracking-widest text-gray-500">
-                      Quorum
-                    </p>
-                  </div>
-                </div>
-                <p className="font-semibold text-cyan-300">
-                  No one party can move it alone.
-                </p>
-              </div>
-
-              <div className="md:col-span-2">
-                <p className="text-gray-300 mb-6 leading-relaxed">
-                  Some actions shouldn&apos;t rest on a single credential. This
-                  one takes three: who you are, proved by signing in with ZapQR;
-                  your approval, given on your own phone; and the physical stick
-                  in your hand, which holds a key that never leaves it and signs
-                  only when you press the button. Miss any one and nothing
-                  moves.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-7">
-                  {[
-                    "P-256 key held on-device",
-                    "Transaction rendered on its own screen",
-                    "Approval link over NFC",
-                    "Physical button to sign",
-                    "Signature verified independently",
-                    "Works with a Trezor Model T",
-                  ].map((c) => (
-                    <span
-                      key={c}
-                      className="text-xs px-2.5 py-1 rounded-md border bg-cyan-400/10 text-cyan-200 border-cyan-400/20"
-                    >
-                      {c}
-                    </span>
-                  ))}
-                </div>
-                <div className="pt-5 border-t border-cyan-500/20">
-                  <p className="font-mono text-xs text-gray-500 mb-3">
-                    First application: stablecoin transfers
-                  </p>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-5">
-                    The signer shows you what you are actually signing on its
-                    own screen, so a compromised browser — or an agent acting
-                    in your session — cannot change the transaction underneath
-                    you. It runs on an ESP32-C6 prototype and on an
-                    off-the-shelf Trezor Model T, which is the point: the
-                    quorum does not depend on our hardware. The mechanism is
-                    general, and it is a long way from a product.
-                  </p>
-                  <Link
-                    href="https://demo.identitystick.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200 font-semibold transition"
-                  >
-                    See the demo →
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <figure className="relative mt-10 pt-8 border-t border-cyan-500/20">
-              <ExplainerVideo
-                base="/media/identitystick/v1"
-                label="IdentityStick in 40 seconds: a transfer moves only after three separate approvals — the stick, your passkey and a tap on iotPush."
-              />
-              <figcaption className="text-sm text-gray-500 mt-4">
-                IdentityStick in 40 seconds. Scan the stick, match the check
-                code, then three separate yeses — the stick, your passkey and a
-                tap on iotPush. Miss one and nothing moves.
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
       {/* ----------------------------------------------------- Releases */}
       <section id="releases" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
@@ -1187,43 +1172,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------------------------------------------- Also built */}
-      <section id="products" className="py-16 px-6 border-t border-gray-800/60">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2">
-            Also built
-          </h2>
-          <p className="text-gray-500 text-sm mb-8 max-w-2xl">
-            Earlier products. Still up, no longer the focus.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {alsoBuilt.map((p) => (
-              <Link
-                key={p.name}
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-start gap-3 bg-gray-900/40 border border-gray-800 rounded-lg px-5 py-4 hover:border-gray-600 hover:bg-gray-900 transition"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={p.mark}
-                  alt=""
-                  aria-hidden
-                  className="w-6 h-6 rounded-md shrink-0 opacity-80 group-hover:opacity-100 transition"
-                />
-                <div>
-                  <p className="font-semibold text-gray-200 group-hover:text-white transition">
-                    {p.name}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">{p.tagline}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ------------------------------------------------------- About */}
       <section id="about" className="py-20 px-6 bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
@@ -1293,7 +1241,11 @@ export default function Home() {
               </svg>
               info@dasecure.com
             </a>
-            <p className="text-gray-500 mt-4 text-sm">
+            <p className="text-gray-400 mt-6 text-sm">
+              In San Francisco for Tech Week, Oct 5–11? Email and we&apos;ll
+              find a time.
+            </p>
+            <p className="text-gray-500 mt-2 text-sm">
               Or reach out on{" "}
               <Link
                 href="https://github.com/dasecure"

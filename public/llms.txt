@@ -1,6 +1,6 @@
 # DaSecure Solutions
 
-> DaSecure Solutions LLC (San Francisco, founded 2026) builds proof of who, what and where: ZapQR for passwordless sign-in, PassQR for Apple and Google Wallet credentials, and iotPush for push notifications you can answer from your phone. ZapLock, ZapDrop and PassQR Tag are built on the same ZapQR identity layer. Everything is shipped and self-serve.
+> DaSecure Solutions LLC (San Francisco, founded 2026) builds ZapQR, passwordless sign-in for your apps that is also the front door to its own products: PassQR (Apple and Google Wallet credentials), iotPush (push notifications you can answer from your phone) and ZapLock (folder encryption) all sign in through ZapQR. ZapDrop and PassQR Tag are built on the same identity layer. Everything is shipped and self-serve.
 
 ## Key facts
 
@@ -11,7 +11,6 @@
 - ZapLock (zaplock.io): encrypt a folder in place (iCloud Drive, Dropbox, Google Drive, on device) and unlock it by signing in with ZapQR. AES-256 with the key split between the device and ZapQR, share/revoke by ZapQR account. Free, no in-app purchases. Runs on iPhone, iPad, Mac, Windows and Android; a folder locked on one platform opens on the others.
 - ZapDrop (screens.zapdrop.ai): a screen shows a rotating QR instead of a flyer rack; scan + Face ID approval → one-pager emailed to a verified address. $99 setup + $79/month first screen, $29 each additional, 300 impressions included; $399 per 7-day event; $149 presence beacon (pre-order).
 - PassQR Tag (tag.passqr.com): a sticker on a car, bag or gate that lets a stranger reach the owner without either side holding an identifier for the other. Private beta, patent pending.
-- IdentityStick (demo.identitystick.com): early demo / hardware prototype of quorum approval (ZapQR sign-in + phone approval + physical signer). Not a product.
 - "Connect with ZapQR": cross-product permission primitive. A product asks for a scoped token for another DaSecure product; the person approves once ("Connect ZapDrop to iotPush?"); no API key changes hands.
 
 ## Get the apps

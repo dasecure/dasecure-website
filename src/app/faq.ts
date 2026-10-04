@@ -11,7 +11,7 @@ export const SITE_URL = "https://dasecure.com";
 export const faqs: Faq[] = [
   {
     q: "What does DaSecure Solutions build?",
-    a: "DaSecure Solutions LLC is a San Francisco software company that builds proof of who, what and where: ZapQR for passwordless sign-in, PassQR for Apple and Google Wallet credentials, and iotPush for push notifications you can answer from your phone. ZapLock, ZapDrop and PassQR Tag are built on the same ZapQR identity layer. Everything is shipped and self-serve — live on the App Store, Google Play, the Chrome Web Store and wordpress.org.",
+    a: "DaSecure Solutions LLC is a San Francisco software company that builds ZapQR, passwordless sign-in for your apps that is also the front door to its own products: PassQR for Apple and Google Wallet credentials, iotPush for push notifications you can answer from your phone, and ZapLock for folder encryption all sign in through ZapQR. ZapDrop and PassQR Tag are built on the same identity layer. Everything is shipped and self-serve — live on the App Store, Google Play, the Chrome Web Store and wordpress.org.",
   },
   {
     q: "What is ZapQR?",
@@ -40,9 +40,5 @@ export const faqs: Faq[] = [
   {
     q: "What is ZapDrop?",
     a: "ZapDrop replaces the flyer rack with a screen that shows a rotating QR code: a passer-by scans, approves with Face ID, and the one-pager lands in their inbox while you get a verified address. Plans start at $79 a month for the first screen or $399 for a seven-day event pass.",
-  },
-  {
-    q: "Is IdentityStick available?",
-    a: "No — IdentityStick is an early demo and hardware prototype, not a product. It is a quorum approval mechanism that needs three things at once: a ZapQR sign-in, an approval on your phone, and a physical signer (an ESP32-C6 prototype or an off-the-shelf Trezor Model T) that renders the transaction on its own screen. There is a demo at demo.identitystick.com and no signup.",
   },
 ];
