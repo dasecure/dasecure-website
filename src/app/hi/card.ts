@@ -35,15 +35,18 @@ export const ZAPQR = {
   scope: "openid email profile",
 };
 
+/* Always www: passqr.com 307s to www.passqr.com, and fetch drops the
+ * Authorization header on a cross-host redirect, so the API key never
+ * arrives and every call 401s (4 Oct). */
 export const PASSQR = {
-  api: "https://passqr.com/api/v1/passes",
+  api: "https://www.passqr.com/api/v1/passes",
   templateId:
     process.env.HI_TEMPLATE_ID || "a3a2d58a-d607-4036-8d2c-8abfa21868d9",
   apple: (code: string) =>
-    `https://passqr.com/api/wallet/apple?code=${encodeURIComponent(code)}`,
+    `https://www.passqr.com/api/wallet/apple?code=${encodeURIComponent(code)}`,
   google: (code: string) =>
-    `https://passqr.com/api/wallet/google?code=${encodeURIComponent(code)}`,
-  view: (code: string) => `https://passqr.com/p/${encodeURIComponent(code)}`,
+    `https://www.passqr.com/api/wallet/google?code=${encodeURIComponent(code)}`,
+  view: (code: string) => `https://www.passqr.com/p/${encodeURIComponent(code)}`,
 };
 
 export const IOTPUSH = {
