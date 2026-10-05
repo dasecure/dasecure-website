@@ -9,7 +9,8 @@
  *
  * Server-side env (Vercel):
  *   PASSQR_API_KEY       key of the PassQR business "DaSecure" (pro plan)
- *   IOTPUSH_TOPIC_KEY    API key of the iotPush topic below (private topic)
+ *   IOTPUSH_API_KEY      iotPush ACCOUNT key (iop_live_…, Settings → API keys);
+ *                        IOTPUSH_TOPIC_KEY is accepted as a fallback name
  *   IOTPUSH_TOPIC        optional, defaults to "dasecure-sales"
  *   HI_TEMPLATE_ID       optional, defaults to the template made for this
  * Missing env never breaks the visitor's side: no PassQR key → they get the

@@ -87,10 +87,16 @@ async function issuePass(p: Person): Promise<string | null> {
   }
 }
 
-async function tellVincent(p: Person, passCode: string | null, ref: string) {
-  const key = process.env.IOTPUSH_TOPIC_KEY;
-  const headers: Record<string, string> = { "content-type": "application/json" };
-  if (key) headers.authorization = `Bearer ${key}`;
+async function tellVincent(p: Person, passCode: string | null, ref: string): Promise<boolean> {
+  const key = process.env.IOTPUSH_API_KEY || process.env.IOTPUSH_TOPIC_KEY;
+  if (!key) {
+    console.error("hi: IOTPUSH_API_KEY not set — skipping alert");
+    return false;
+  }
+  const headers: Record<string, string> = {
+    "content-type": "application/json",
+    authorization: `Bearer ${key}`,
+  };
   const where = ref ? ` · via ${ref}` : "";
   try {
     const res = await fetch(IOTPUSH.url(IOTPUSH.topic), {
@@ -106,9 +112,14 @@ async function tellVincent(p: Person, passCode: string | null, ref: string) {
       }),
       signal: AbortSignal.timeout(TIMEOUT),
     });
-    if (!res.ok) console.error("hi: iotPush failed", res.status, await res.text());
+    if (!res.ok) {
+      console.error("hi: iotPush failed", res.status, await res.text());
+      return false;
+    }
+    return true;
   } catch (e) {
     console.error("hi: iotPush error", e);
+    return false;
   }
 }
 
@@ -136,7 +147,8 @@ export async function GET(req: NextRequest) {
 
   const ref = cleanRef(tx.r);
   const passCode = await issuePass(person);
-  await tellVincent(person, passCode, ref);
+  const told = await tellVincent(person, passCode, ref);
+  const n = told ? "1" : "0";
 
-  return passCode ? done(req, { c: passCode }) : done(req, { e: "pass" });
+  return passCode ? done(req, { c: passCode, n }) : done(req, { e: "pass", n });
 }

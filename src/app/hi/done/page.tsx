@@ -4,7 +4,9 @@ const why: Record<string, string> = {
   cancelled: "Sign-in was cancelled, so no card was issued.",
   expired: "That sign-in link expired. Give it another go.",
   signin: "Sign-in didn't complete on our side. Give it another go.",
-  pass: "You're signed in and I've been notified, but the wallet card didn't issue. Here's my contact instead.",
+  pass: "You're signed in, but the wallet card didn't issue. Here's my contact instead.",
+  passTold:
+    "You're signed in and I've been notified, but the wallet card didn't issue. Here's my contact instead.",
 };
 
 const products = [
@@ -16,9 +18,10 @@ const products = [
 export default async function Done({
   searchParams,
 }: {
-  searchParams: Promise<{ c?: string; e?: string }>;
+  searchParams: Promise<{ c?: string; e?: string; n?: string }>;
 }) {
-  const { c, e } = await searchParams;
+  const { c, e, n } = await searchParams;
+  const told = n === "1";
   const code = isPassCode(c) ? c : null;
 
   if (!code) {
@@ -28,7 +31,9 @@ export default async function Done({
         <h1 className="mt-14 text-3xl font-bold leading-tight">
           {retry ? "Not quite." : "Nearly there."}
         </h1>
-        <p className="mt-3 text-gray-400">{why[e ?? ""] ?? why.signin}</p>
+        <p className="mt-3 text-gray-400">
+          {e === "pass" && told ? why.passTold : why[e ?? ""] ?? why.signin}
+        </p>
         <div className="mt-8 flex flex-col gap-3">
           {retry && (
             <a
@@ -96,7 +101,7 @@ export default async function Done({
           What just happened
         </p>
         <ul className="space-y-3">
-          {products.map((p) => (
+          {products.filter((p) => told || p.name !== "iotPush").map((p) => (
             <li key={p.name} className="text-sm text-gray-400">
               <a
                 href={p.href}
