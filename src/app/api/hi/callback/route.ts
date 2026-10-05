@@ -6,6 +6,28 @@ type Person = { email: string; name: string };
 
 const TIMEOUT = 8000;
 
+/* Env values pasted into a dashboard often carry a trailing newline, a space,
+ * wrapping quotes or a "Bearer " prefix. PassQR and iotPush both compare an
+ * exact hash, so any of those fails silently as 401. Normalise first. */
+function envKey(...names: string[]): string | null {
+  for (const n of names) {
+    const raw = process.env[n];
+    if (!raw) continue;
+    const v = raw
+      .trim()
+      .replace(/^["']|["']$/g, "")
+      .replace(/^Bearer\s+/i, "")
+      .trim();
+    if (v) return v;
+  }
+  return null;
+}
+
+/* Safe to log: the prefix, length and last four are what the products'
+ * own dashboards display; the secret body is never printed. */
+const fingerprint = (k: string) =>
+  `${k.slice(0, k.indexOf("_", 4) + 1) || "?"}…${k.slice(-4)} (len ${k.length})`;
+
 function done(req: NextRequest, params: Record<string, string>) {
   const url = new URL("/hi/done", req.nextUrl.origin);
   for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
@@ -53,7 +75,7 @@ async function signIn(code: string, verifier: string): Promise<Person | null> {
 }
 
 async function issuePass(p: Person): Promise<string | null> {
-  const key = process.env.PASSQR_API_KEY;
+  const key = envKey("PASSQR_API_KEY");
   if (!key) {
     console.error("hi: PASSQR_API_KEY not set — skipping pass");
     return null;
@@ -76,7 +98,12 @@ async function issuePass(p: Person): Promise<string | null> {
       signal: AbortSignal.timeout(TIMEOUT),
     });
     if (!res.ok) {
-      console.error("hi: PassQR create failed", res.status, await res.text());
+      console.error(
+        "hi: PassQR create failed",
+        res.status,
+        `key ${fingerprint(key)}`,
+        await res.text(),
+      );
       return null;
     }
     const body = (await res.json()) as { data?: { code?: string } };
@@ -88,7 +115,7 @@ async function issuePass(p: Person): Promise<string | null> {
 }
 
 async function tellVincent(p: Person, passCode: string | null, ref: string): Promise<boolean> {
-  const key = process.env.IOTPUSH_API_KEY || process.env.IOTPUSH_TOPIC_KEY;
+  const key = envKey("IOTPUSH_API_KEY", "IOTPUSH_TOPIC_KEY");
   if (!key) {
     console.error("hi: IOTPUSH_API_KEY not set — skipping alert");
     return false;
@@ -113,7 +140,12 @@ async function tellVincent(p: Person, passCode: string | null, ref: string): Pro
       signal: AbortSignal.timeout(TIMEOUT),
     });
     if (!res.ok) {
-      console.error("hi: iotPush failed", res.status, await res.text());
+      console.error(
+        "hi: iotPush failed",
+        res.status,
+        `key ${fingerprint(key)}`,
+        await res.text(),
+      );
       return false;
     }
     return true;
