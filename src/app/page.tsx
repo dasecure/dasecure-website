@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { faqs } from "./faq";
+import PreferredSourceButton from "./preferred-source-button";
 import { homeGraph, jsonLd } from "./structured-data";
 
 /* ------------------------------------------------------------------ */
@@ -1322,11 +1323,12 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t border-gray-800/50">
+          <div className="mt-6 pt-6 border-t border-gray-800/50 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <p className="text-gray-600 text-sm">
               © {new Date().getFullYear()} DaSecure Solutions LLC. All rights
               reserved.
             </p>
+            <PreferredSourceButton />
           </div>
         </div>
       </footer>

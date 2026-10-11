@@ -12,11 +12,15 @@ const securityHeaders = [
       "default-src 'self'",
       // googletagmanager.com is where gtag.js loads from; without it GA
       // silently never ran on this site (script-src was 'self' only).
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com",
+      // news.google.com + www.gstatic.com serve Google's Preferred Sources
+      // library (footer "Add as a preferred source" button); its add-flow
+      // runs in a news.google.com iframe, hence frame-src/connect-src too.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://news.google.com https://www.gstatic.com",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self' data:",
-      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
+      "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://news.google.com",
+      "frame-src 'self' https://news.google.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
