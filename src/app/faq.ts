@@ -27,7 +27,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What is iotPush?",
-    a: "iotPush turns one HTTP POST into a push notification on your phone. Servers, scripts, agents and IoT devices send to a topic; the iotPush app on iOS and Android can answer back with action buttons and typed replies, so an alert becomes a decision instead of a dead end. It also ships an MCP server and Apple Shortcuts support. The free tier includes 3 topics and 100 messages a month.",
+    a: "iotPush turns one HTTP POST into a push notification on your phone. Servers, scripts, agents and IoT devices send to a topic; the iotPush app on iOS and Android can answer back with action buttons and typed replies, so an alert becomes a decision instead of a dead end. It also ships an MCP server and Apple Shortcuts support. The free plan includes 1 topic and 100 pushes a month.",
   },
   {
     q: "How do ZapQR, PassQR and iotPush work together?",
@@ -35,7 +35,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What is ZapLock and which platforms does it run on?",
-    a: "ZapLock encrypts a folder where it sits — same name, same path, in iCloud Drive, Dropbox, Google Drive or on the device — and unlocks it by signing in with ZapQR. Every file is AES-256 encrypted with a key split between the device and ZapQR, so no single party holds a whole key. You can share a vault with anyone who has a ZapQR account and revoke them in a tap. ZapLock runs on every major platform — iPhone and iPad (App Store), Mac (Mac App Store), Windows (Microsoft Store) and Android (Google Play) — so a folder locked on a Mac can be opened on a Windows PC or an Android phone. It is free on all of them, with no in-app purchases.",
+    a: "ZapLock encrypts a folder where it sits — same name, same path, in iCloud Drive, Dropbox, Google Drive or on the device — and unlocks it by signing in with ZapQR. Every file is AES-256 encrypted with a key split between the device and ZapQR, so no single party holds a whole key. On the Personal plan you can share a vault with anyone who has a ZapQR account and revoke them in a tap. ZapLock runs on every major platform — iPhone and iPad (App Store), Mac (Mac App Store), Windows (Microsoft Store) and Android (Google Play) — so a folder locked on a Mac can be opened on a Windows PC or an Android phone. It is free to start on all of them: the free plan locks one folder, and Personal adds unlimited folders and sharing.",
   },
   {
     q: "What is ZapDrop?",

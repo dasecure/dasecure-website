@@ -152,7 +152,7 @@ const products = [
     category: "SecurityApplication",
     os: "iOS, iPadOS, macOS, Windows, Android",
     description:
-      "Encrypt a folder in place — same name, same path — and unlock it by signing in with ZapQR. AES-256 with the key split between the device and ZapQR; share with anyone who has a ZapQR account and revoke in a tap. Runs on iPhone, iPad, Mac, Windows and Android. Free, no in-app purchases.",
+      "Encrypt a folder in place — same name, same path — and unlock it by signing in with ZapQR. AES-256 with the key split between the device and ZapQR; share with anyone who has a ZapQR account and revoke in a tap. Runs on iPhone, iPad, Mac, Windows and Android. Free for one folder; Personal adds unlimited folders and sharing.",
     downloads: [
       "https://apps.apple.com/us/app/zaplock/id6808469062",
       "https://apps.microsoft.com/detail/9PF9CLKD133K",
