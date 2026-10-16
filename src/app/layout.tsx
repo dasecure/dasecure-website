@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 const description =
-  "Sign in once with ZapQR — passwordless sign-in for your apps, and the front door to everything DaSecure ships: PassQR Apple & Google Wallet credentials, iotPush two-way alerts and ZapLock folder encryption.";
+  "ZapQR passwordless sign-in for your apps, plus PassQR wallet passes, iotPush two-way alerts and ZapLock folder encryption. Shipped and self-serve.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dasecure.com"),

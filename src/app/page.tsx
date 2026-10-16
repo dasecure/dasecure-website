@@ -159,11 +159,12 @@ const flagships: Flagship[] = [
 ];
 
 /* How the three actually wire together — every line is shipped today. */
-const wiring = [
+const wiring: { from: string; to: string; text: string; guide?: { label: string; href: string } }[] = [
   {
     from: "ZapQR",
     to: "PassQR + iotPush",
     text: "Both admin consoles sign in through ZapQR. One identity, no separate passwords to lose.",
+    guide: { label: "How one ZapQR sign-in works", href: "https://zapqr.ai/works-with" },
   },
   {
     from: "ZapQR",
@@ -174,6 +175,7 @@ const wiring = [
     from: "PassQR",
     to: "iotPush",
     text: "Scans, stamps and usage reports arrive as notifications you can act on, not dashboards you have to remember to open.",
+    guide: { label: "Set up scan alerts in PassQR", href: "https://passqr.com/guides/scan-alerts" },
   },
   {
     from: "iotPush",
@@ -184,6 +186,7 @@ const wiring = [
     from: "ZapDrop",
     to: "iotPush",
     text: "“Connect with ZapQR”: approve once, and every scan on that screen buzzes your phone. No API key changes hands — and you can cut the link from either side.",
+    guide: { label: "Get booth scan alerts", href: "https://www.iotpush.com/guides/booth-scan-alerts" },
   },
 ];
 
@@ -213,7 +216,7 @@ const family: FamilyMember[] = [
     icon: "/zaplock-icon.svg",
     what: "Folder encryption",
     description:
-      "Encrypt a folder where it sits — same name, same path, in iCloud Drive, Dropbox or Google Drive — and unlock it by signing in with ZapQR. Share it with someone by their address, revoke them in a tap, and every unlocked folder relocks the moment the session ends. Free, no in-app purchases.",
+      "Encrypt a folder where it sits — same name, same path, in iCloud Drive, Dropbox or Google Drive — and unlock it by signing in with ZapQR. Share it with someone by their address, revoke them in a tap, and every unlocked folder relocks the moment the session ends. Free for one folder; Personal adds unlimited folders and sharing.",
     role: "Identity decides who can open your files.",
     url: "https://zaplock.io",
     urlLabel: "zaplock.io",
@@ -868,8 +871,8 @@ export default function Home() {
               </h2>
               <p className="text-lg text-gray-400 mb-8 max-w-xl">
                 ZapLock encrypts any folder exactly where it sits, and your
-                ZapQR sign-in is the key. Now on every major platform — free on
-                all of them, with no in-app purchases.
+                ZapQR sign-in is the key. Now on every major platform, and free
+                to start on all of them.
               </p>
 
               <ul className="space-y-4">
@@ -977,6 +980,14 @@ export default function Home() {
                 <p className="text-gray-400 text-sm leading-relaxed">
                   {w.text}
                 </p>
+                {w.guide && (
+                  <a
+                    href={w.guide.href}
+                    className="inline-block mt-3 text-sm font-medium text-emerald-300 hover:text-emerald-200 transition"
+                  >
+                    {w.guide.label} →
+                  </a>
+                )}
               </div>
             ))}
           </div>

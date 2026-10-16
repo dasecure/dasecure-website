@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: "https://dasecure.com",
-      lastModified: new Date("2026-09-27"),
+      lastModified: new Date("2026-10-16"),
       changeFrequency: "weekly",
       priority: 1,
     },
