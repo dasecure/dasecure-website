@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 const description =
-  "ZapQR passwordless sign-in for your apps, plus PassQR wallet passes, iotPush two-way alerts and ZapLock folder encryption. Shipped and self-serve.";
+  "DaSecure builds proof of who, what and where: ZapQR passwordless sign-in, PassQR wallet passes, iotPush two-way alerts and ZapLock folder encryption.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dasecure.com"),
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     types: { "text/plain": "https://dasecure.com/llms.txt" },
   },
   openGraph: {
-    title: "DaSecure Solutions | Sign in once. Everything else follows.",
+    title: "DaSecure Solutions | Proof of who, what and where",
     description,
     type: "website",
     url: "https://dasecure.com",
@@ -60,13 +60,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "DaSecure Solutions — sign in once with ZapQR; PassQR, iotPush and ZapLock follow",
+        alt: "DaSecure Solutions — proof of who, what and where",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DaSecure Solutions | Sign in once. Everything else follows.",
+    title: "DaSecure Solutions | Proof of who, what and where",
     description,
     images: ["/og.png"],
   },

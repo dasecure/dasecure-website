@@ -14,7 +14,7 @@ export function GET() {
     `TITLE:${CARD.title.replace(/,.*$/, "")}`,
     `EMAIL;TYPE=INTERNET,WORK:${CARD.email}`,
     `URL:${CARD.web}`,
-    `NOTE:Met at ${CARD.event}`,
+    "NOTE:Card from dasecure.com/hi",
     "END:VCARD",
     "",
   ].join("\r\n");

@@ -22,7 +22,7 @@ export const CARD = {
   title: "Founder, DaSecure Solutions",
   email: "vincent@dasecure.com",
   web: "https://dasecure.com",
-  event: "SF Tech Week 2026",
+  where: "DaSecure Solutions · San Francisco",
 };
 
 export const ZAPQR = {
@@ -62,6 +62,6 @@ export const TX_COOKIE = "hi_tx";
 export const isPassCode = (c: string | undefined | null): c is string =>
   !!c && /^[A-Za-z0-9-]{4,40}$/.test(c);
 
-/** Short, safe tag for where the scan came from (?ref=sftw). */
+/** Short, safe tag for where the scan came from (e.g. ?ref=booth). */
 export const cleanRef = (r: string | null | undefined) =>
   (r || "").replace(/[^a-z0-9_-]/gi, "").slice(0, 24);

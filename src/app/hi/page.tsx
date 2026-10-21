@@ -30,7 +30,7 @@ export default async function Hi({
   return (
     <>
       <p className="mt-12 text-xs font-mono tracking-widest text-lime-300/80">
-        {CARD.event.toUpperCase()}
+        {CARD.where.toUpperCase()}
       </p>
       <h1 className="mt-3 text-4xl font-bold leading-tight">
         Hi, I&apos;m Vincent.

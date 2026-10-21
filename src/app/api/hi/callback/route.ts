@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { CARD, IOTPUSH, PASSQR, TX_COOKIE, ZAPQR, cleanRef } from "../../../hi/card";
+import { IOTPUSH, PASSQR, TX_COOKIE, ZAPQR, cleanRef } from "../../../hi/card";
 
 type Tx = { s: string; v: string; r?: string };
 type Person = { email: string; name: string };
@@ -80,11 +80,12 @@ async function issuePass(p: Person): Promise<string | null> {
     console.error("hi: PASSQR_API_KEY not set — skipping pass");
     return null;
   }
-  const met = `${CARD.event} · ${new Date().toLocaleDateString("en-US", {
+  const met = new Date().toLocaleDateString("en-US", {
     timeZone: "America/Los_Angeles",
     month: "short",
     day: "numeric",
-  })}`;
+    year: "numeric",
+  });
   try {
     const res = await fetch(PASSQR.api, {
       method: "POST",

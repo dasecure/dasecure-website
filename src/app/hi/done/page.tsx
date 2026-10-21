@@ -69,7 +69,7 @@ export default async function Done({
         Done. Add my card to your wallet.
       </h1>
       <p className="mt-3 text-gray-400">
-        It carries my contact, where we met, and a note I can update later — it
+        It carries my contact, the day we met, and a note I can update later — it
         lands on your lock screen if I do.
       </p>
 
