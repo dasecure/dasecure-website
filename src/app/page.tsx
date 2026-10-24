@@ -652,6 +652,23 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
+
+              <a
+                href="https://www.producthunt.com/products/zaplock?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-zaplock"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-ga-label="Product Hunt badge"
+                className="mt-8 inline-block rounded-[10px] transition hover:-translate-y-0.5"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  alt="ZapLock - Passwordless folder lock, in place | Product Hunt"
+                  width={250}
+                  height={54}
+                  className="block w-[250px] h-[54px]"
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1291590&theme=light&t=1792866624985"
+                />
+              </a>
             </div>
 
             <div className="flex flex-col">
